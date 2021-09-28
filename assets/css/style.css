@@ -54,3 +54,11 @@ button:hover{
     font-weight: 500;
     font-style: italic;
 }
+
+.lyricText {
+    white-space: pre;
+    cursor: pointer;
+}
+.lyricText span:hover {
+    background-color: cyan;
+}
