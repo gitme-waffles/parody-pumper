@@ -1,7 +1,7 @@
 //var apiKey = "9819adc6647bd8d274faffe9529fdba9";//api in music match
 var form = $(".form");
 var searchBtn = $("#search");
-var resultArea = $(".result");
+var resultArea = $(".result-container");
 var inputSong = $("#input");
 searchBtn.on("click", enterSong);
 function enterSong(event) {
@@ -32,16 +32,16 @@ function searchSong(songtoSearch) {
 }
 
 function convertText(){ 
-    $('.lyricText').each(function() {
+    $('.lyric-api-text').each(function() {
         var lyricEl = $(this);
         var x = lyricEl.text().replace(/(\w+)/gi, "<span>$1</span>")
-        $('.lyricText').text(''); // clear the text
-        $('.lyricText').append(x); // add the clickable text
+        $('.lyric-api-text').text(''); // clear the text
+        $('.lyric-api-text').append(x); // add the clickable text
     });
 }
 
 
-$('.lyricText').on('click', 'span', function(event){
+$('.lyric-api-text').on('click', 'span', function(event){
     console.log($(event.target).text())
     // click on text function goes here
 })
