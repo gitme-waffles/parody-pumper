@@ -1,6 +1,6 @@
 var form = $(".form");
 var searchBtn = $("#search");
-var resultArea = $(".result");
+var resultArea = $(".result-container");
 var inputSong = $("#input");
 searchBtn.on("click", enterSong);
 function enterSong(event) {
@@ -30,33 +30,20 @@ function searchSong(artist, song) {
         .catch(function (error) {
             console.error(error);
         });
-
-    // fetch("https://mourits-lyrics.p.rapidapi.com/cacheCount", {
-    //     method: "GET",
-    //     headers: {
-    //         "x-rapidapi-host": "mourits-lyrics.p.rapidapi.com",
-    //         "x-rapidapi-key": "SIGN-UP-FOR-KEY",
-    //     },
-    // })
-    //     .then((response) => {
-    //         console.log(response);
-    //     })
-    //     .catch((err) => {
-    //         console.error(err);
-    //     });
 }
-
-function convertText() {
-    $(".lyricText").each(function () {
+                     
+function convertText(){ 
+    $('.lyric-api-text').each(function() {
         var lyricEl = $(this);
-        var x = lyricEl.text().replace(/(\w+)/gi, "<span>$1</span>");
-        $(".lyricText").text(""); // clear the text
-        $(".lyricText").append(x); // add the clickable text
+        var x = lyricEl.text().replace(/(\w+)/gi, "<span>$1</span>")
+        $('.lyric-api-text').text(''); // clear the text
+        $('.lyric-api-text').append(x); // add the clickable text
     });
 }
 
-$(".lyricText").on("click", "span", function (event) {
-    console.log($(event.target).text());
+
+$('.lyric-api-text').on('click', 'span', function(event){
+    console.log($(event.target).text())
     // click on text function goes here
 });
 
