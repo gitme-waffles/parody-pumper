@@ -1,0 +1,56 @@
+
+
+
+*{
+    padding:0%;
+    margin:0%;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Gochi Hand', cursive;
+    background-color: rgb(40,40,40);
+}
+header{
+    padding: 30px;
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+height:200px;
+width:100%;
+
+}
+.container h1{
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+input{
+    width:50%;
+    height:45px;
+    border-radius: 10px;
+    border:none;
+}
+button{
+    width:100px;
+    height: 45px;
+    background: cornflowerblue;
+    color: white;
+    border-radius: 10px;
+}
+button:hover{
+    background-color: turquoise;
+}
+.result{
+    color: white;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+
+.song-list{
+    list-style: none;
+}
+.song-list li{
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-style: italic;
+}
