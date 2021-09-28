@@ -1,4 +1,4 @@
-//var apiKey = "9819adc6647bd8d274faffe9529fdba9";//api in music match
+var apiKey = "9819adc6647bd8d274faffe9529fdba9"; //api in music match
 var form = $(".form");
 var searchBtn = $("#search");
 var resultArea = $(".result");
@@ -15,8 +15,7 @@ function enterSong(event) {
 function searchSong(songtoSearch) {
     console.log(songtoSearch);
 
-    var songUrl =
-        "https://api.openweathermap.org/data/2.5/weather?q=" + songtoSearch + "&appid=1695a85bf822350fc6b4ed134da665b7";
+    var songUrl = "http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP" + songtoSearch + "&appid=" + apiKey;
     fetch(songUrl)
         .then(function (response) {
             return response.json();
