@@ -1,4 +1,3 @@
-//var apiKey = "9819adc6647bd8d274faffe9529fdba9";//api in music match
 var form = $(".form");
 var searchBtn = $("#search");
 var resultArea = $(".result-container");
@@ -8,29 +7,31 @@ function enterSong(event) {
     event.preventDefault();
     var songtoSearch = inputSong.val().trim();
     if (songtoSearch) {
-        searchSong(songtoSearch);
+        searchSong("ACDC", "Highway to hell");
     }
 }
 
-function searchSong(songtoSearch) {
-    console.log(songtoSearch);
-
+function searchSong(artist, song) {
     var songUrl =
-        "https://api.openweathermap.org/data/2.5/weather?q=" + songtoSearch + "&appid=1695a85bf822350fc6b4ed134da665b7";
+        "https://private-anon-e83b93ca5b-lyricsovh.apiary-proxy.com/v1/" +
+        encodeURIComponent(artist) +
+        "/" +
+        encodeURIComponent(song);
+
     fetch(songUrl)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             console.log(data);
-            //display the lyric and add the highlight / click
-
+            var lyrics = data.lyrics.split("\r\n")[1];
+            var individualLyric = lyrics.split("\n");
         })
         .catch(function (error) {
             console.error(error);
         });
 }
-
+                     
 function convertText(){ 
     $('.lyric-api-text').each(function() {
         var lyricEl = $(this);
@@ -44,7 +45,6 @@ function convertText(){
 $('.lyric-api-text').on('click', 'span', function(event){
     console.log($(event.target).text())
     // click on text function goes here
-})
+});
 
-
-convertText()
+convertText();
