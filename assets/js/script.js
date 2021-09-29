@@ -9,8 +9,8 @@ function enterSong(event) {
     var songtoSearch = inputSong.val().trim();
     var artisttoSearch = inputArtist.val().trim();
     if (songtoSearch) {
-        searchSong("ACDC", "Highway to hell");
-        // searchSong(songtoSearch, artisttoSearch);
+        //  searchSong("ACDC", "Highway to hell");
+        searchSong(songtoSearch, artisttoSearch);
     }
 }
 
@@ -37,7 +37,7 @@ function searchSong(artist, song) {
 }
 function getLyrics(lyrics, individualLyric) {
     $("form")[0].reset();
-    $(".lyric-text").text = " ";
+    $(".lyric-text").text(" ");
     console.log(lyrics, "lyrics of song");
     console.log(individualLyric, "individual Lyrics");
     $(".lyric-text").append(lyrics);
