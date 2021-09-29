@@ -1,4 +1,4 @@
-searchWord = 'xray'
+searchWord = 'capable'
 
 //fetch rhymes from wordAPI
 function getWordRhymes(searchWord){
