@@ -88,8 +88,6 @@ function renderLyricsToScreen(lyrics) {
       $lyricText.append(breakElem);
     }
   }
-
-  $lyricText.append(lyrics);
 }
 
 //function to dispaly song name and artist name as heading
