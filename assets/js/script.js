@@ -32,6 +32,7 @@ function searchSong(song, artist) {
             var lyrics = data.lyrics.split("\r\n")[1];
             var individualLyric = lyrics.split("\n");
             getLyrics(lyrics, individualLyric);
+            convertText();
         })
         .catch(function (error) {
             console.error(error);
@@ -58,17 +59,17 @@ function addHeading(song, artist) {
 }
 
 function convertText() {
-    $(".lyric-api-text").each(function () {
+    $(".lyric-text").each(function () {
         var lyricEl = $(this);
         var x = lyricEl.text().replace(/(\w+)/gi, "<span>$1</span>");
-        $(".lyric-api-text").text(""); // clear the text
-        $(".lyric-api-text").append(x); // add the clickable text
+        $(".lyric-text").text(""); // clear the text
+        $(".lyric-text").append(x); // add the clickable text
     });
 }
 
-$(".lyric-api-text").on("click", "span", function (event) {
+$(".lyric-text").on("click", "span", function (event) {
     console.log($(event.target).text());
     // click on text function goes here
 });
 
-convertText();
+
