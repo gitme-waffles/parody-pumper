@@ -182,6 +182,7 @@ function getWordAntonyms(searchWord) {
       printAntonyms(["No antonyms Found"]);
     });
 }
+// Print rhymes to screen
 function printRhyming(wordArr) {
   $("#rhymingWords").text(""); //clear any children
   for (var i = 0; i < wordArr.length; i++) {
@@ -189,6 +190,7 @@ function printRhyming(wordArr) {
     $("#rhymingWords").append(rhymeEl);
   }
 }
+// Print Synonyms to screen
 function printSynonyms(wordArr) {
   $("#synonyms").text(""); //clear any children
   for (var i = 0; i < wordArr.length; i++) {
@@ -196,6 +198,7 @@ function printSynonyms(wordArr) {
     $("#synonyms").append(rhymeEl);
   }
 }
+//Print Antonyms to screen
 function printAntonyms(wordArr) {
   $("#antonyms").text(""); //clear any children
   for (var i = 0; i < wordArr.length; i++) {
@@ -204,14 +207,13 @@ function printAntonyms(wordArr) {
   }
 }
 
+// event deligation - click on lyric word.
 $(".lyric-text").on("click", "span", function (event) {
   if ($lyricClick) {
     $lyricClick.removeClass("highLightColor");
   }
   $lyricClick = $(event.target);
   $lyricClick.attr({ class: "highLightColor" });
-
-  console.log("Search = ", $lyricClick.text());
   getWordRhymes($lyricClick.text());
   getWordSynonyms($lyricClick.text());
   getWordAntonyms($lyricClick.text());
