@@ -4,33 +4,10 @@ var resultArea = $(".result-container");
 var inputSong = $("#songName");
 var inputArtist = $("#artistName");
 var $lyricText = $(".lyric-text");
-<<<<<<< HEAD
-var copytoClip = $("#copyBtn");
-copytoClip.on("click", copyToClipboard);
-=======
 var $wordsBoxEl = $(".words-box");
 var $lyricClick;
 
->>>>>>> 5bf56166e4ba57666c61121d63174fe6fed8cb29
 searchBtn.on("click", enterSong);
-
-// little algorithm
-
-function copyToClipboard() {
-    // get the lyric text element
-    // iterate through the hildrend
-    // if its a div, iterate through the words
-    // if its a break, skip it and add a new line (\n)
-    // sum up the strings into the original song lyric
-   // var lyrictoCopy = $lyricText;
-    for (var i=0;i<$lyricText.Children.length;i++)
-if
-
-
-
-
-
-}
 
 function enterSong(event) {
     event.preventDefault();
@@ -77,18 +54,10 @@ function searchSong(song, artist) {
     mockedResponse.then(function (data) {
         console.log(data, "data");
 
-<<<<<<< HEAD
         var lyrics = data.lyrics.split("\r\n")[1];
         console.log(lyrics);
         renderLyricsToScreen(lyrics);
-        convertText();
     });
-=======
-    var lyrics = data.lyrics.split("\r\n")[1];
-    console.log(lyrics);
-    renderLyricsToScreen(lyrics);
-  });
->>>>>>> 5bf56166e4ba57666c61121d63174fe6fed8cb29
 }
 
 //function to display song in container
@@ -121,11 +90,7 @@ function renderLyricsToScreen(lyrics) {
         }
     }
 
-<<<<<<< HEAD
-    $(".lyric-text").append(lyrics);
-=======
-  $lyricText.append(lyrics);
->>>>>>> 5bf56166e4ba57666c61121d63174fe6fed8cb29
+    $lyricText.append(lyrics);
 }
 
 //function to dispaly song name and artist name as heading
@@ -136,145 +101,126 @@ function addHeading(song, artist) {
     $("#artist").append(artist.toUpperCase());
 }
 
-<<<<<<< HEAD
-function convertText() {
-    //   $(".lyric-text").each(function () {
-    //     var lyricEl = $(this);
-    //     var x = lyricEl.text().replace(/(\w+)/gi, "<span>$1</span>");
-    //     $(".lyric-text").text(""); // clear the text
-    //     $(".lyric-text").append(x); // add the clickable text
-    //   });
-=======
 //fetch rhymes from wordAPI
 function getWordRhymes(searchWord) {
-  var searchUrl =
-    "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/rhymes";
-  fetch(searchUrl, {
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-      "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
-    },
-  })
-    .then((response) => {
-      console.log(response);
-      return response.json(response);
+    var searchUrl = "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/rhymes";
+    fetch(searchUrl, {
+        method: "GET",
+        headers: {
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
+        },
     })
-    .then((data) => {
-      console.log(data);
-      if (!data.rhymes.all) {
-        throw new Error("No Rhymes Found");
-      }
-      printRhyming(data.rhymes.all);
-    })
-    .catch((err) => {
-      console.log(err);
-      printRhyming(["No Rhymes Found"]);
-    });
+        .then((response) => {
+            console.log(response);
+            return response.json(response);
+        })
+        .then((data) => {
+            console.log(data);
+            if (!data.rhymes.all) {
+                throw new Error("No Rhymes Found");
+            }
+            printRhyming(data.rhymes.all);
+        })
+        .catch((err) => {
+            console.log(err);
+            printRhyming(["No Rhymes Found"]);
+        });
 }
 //fetch synonyms from wordAPI
 function getWordSynonyms(searchWord) {
-  var searchUrl =
-    "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/synonyms";
-  fetch(searchUrl, {
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-      "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
-    },
-  })
-    .then((response) => {
-      console.log(response);
-      return response.json(response);
+    var searchUrl = "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/synonyms";
+    fetch(searchUrl, {
+        method: "GET",
+        headers: {
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
+        },
     })
-    .then((data) => {
-      console.log(data);
-      if (!data.synonyms) {
-        throw new Error("No synonyms Found");
-      }
-      printSynonyms(data.synonyms);
-    })
-    .catch((err) => {
-      console.log(err);
-      printSynonyms(["No synonyms Found"]);
-    });
->>>>>>> 5bf56166e4ba57666c61121d63174fe6fed8cb29
+        .then((response) => {
+            console.log(response);
+            return response.json(response);
+        })
+        .then((data) => {
+            console.log(data);
+            if (!data.synonyms) {
+                throw new Error("No synonyms Found");
+            }
+            printSynonyms(data.synonyms);
+        })
+        .catch((err) => {
+            console.log(err);
+            printSynonyms(["No synonyms Found"]);
+        });
 }
 //fetch antonyms from wordAPI
 function getWordAntonyms(searchWord) {
-  var searchUrl =
-    "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/antonyms";
-  fetch(searchUrl, {
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-      "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
-    },
-  })
-    .then((response) => {
-      console.log(response);
-      return response.json(response);
+    var searchUrl = "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/antonyms";
+    fetch(searchUrl, {
+        method: "GET",
+        headers: {
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
+        },
     })
-    .then((data) => {
-      console.log(data);
-      if (!data.antonyms || data.antonyms.length === 0) {
-        throw new Error("No antonyms Found");
-      }
-      printAntonyms(data.antonyms);
-    })
-    .catch((err) => {
-      console.log(err);
-      printAntonyms(["No antonyms Found"]);
-    });
+        .then((response) => {
+            console.log(response);
+            return response.json(response);
+        })
+        .then((data) => {
+            console.log(data);
+            if (!data.antonyms || data.antonyms.length === 0) {
+                throw new Error("No antonyms Found");
+            }
+            printAntonyms(data.antonyms);
+        })
+        .catch((err) => {
+            console.log(err);
+            printAntonyms(["No antonyms Found"]);
+        });
 }
 // Print rhymes to screen
 function printRhyming(wordArr) {
-  $("#rhymingWords").text(""); //clear any children
-  for (var i = 0; i < wordArr.length; i++) {
-    rhymeEl = $("<li>").text(wordArr[i]);
-    $("#rhymingWords").append(rhymeEl);
-  }
+    $("#rhymingWords").text(""); //clear any children
+    for (var i = 0; i < wordArr.length; i++) {
+        rhymeEl = $("<li>").text(wordArr[i]);
+        $("#rhymingWords").append(rhymeEl);
+    }
 }
 // Print Synonyms to screen
 function printSynonyms(wordArr) {
-  $("#synonyms").text(""); //clear any children
-  for (var i = 0; i < wordArr.length; i++) {
-    rhymeEl = $("<li>").text(wordArr[i]);
-    $("#synonyms").append(rhymeEl);
-  }
+    $("#synonyms").text(""); //clear any children
+    for (var i = 0; i < wordArr.length; i++) {
+        rhymeEl = $("<li>").text(wordArr[i]);
+        $("#synonyms").append(rhymeEl);
+    }
 }
 //Print Antonyms to screen
 function printAntonyms(wordArr) {
-  $("#antonyms").text(""); //clear any children
-  for (var i = 0; i < wordArr.length; i++) {
-    rhymeEl = $("<li>").text(wordArr[i]);
-    $("#antonyms").append(rhymeEl);
-  }
+    $("#antonyms").text(""); //clear any children
+    for (var i = 0; i < wordArr.length; i++) {
+        rhymeEl = $("<li>").text(wordArr[i]);
+        $("#antonyms").append(rhymeEl);
+    }
 }
 
 // event delegation - click on lyric word.
 $lyricText.on("click", "span", function (event) {
-  if ($lyricClick) {
-    $lyricClick.removeClass("highLightColor");
-    $lyricClick.addClass("changedColor");
-  }
-  $lyricClick = $(event.target);
-  $lyricClick.addClass("highLightColor");
-  getWordRhymes($lyricClick.text());
-  getWordSynonyms($lyricClick.text());
-  getWordAntonyms($lyricClick.text());
+    if ($lyricClick) {
+        $lyricClick.removeClass("highLightColor");
+        $lyricClick.addClass("changedColor");
+    }
+    $lyricClick = $(event.target);
+    $lyricClick.addClass("highLightColor");
+    getWordRhymes($lyricClick.text());
+    getWordSynonyms($lyricClick.text());
+    getWordAntonyms($lyricClick.text());
 });
 
-<<<<<<< HEAD
-$(".lyric-text").on("click", "span", function (event) {
-    console.log($(event.target).text());
-    // click on text function goes here
-=======
 // Event delegation
 $wordsBoxEl.on("click", "li", function (event) {
-  console.log($(event.target).text());
-  console.log($lyricClick.text());
-  //$lyricClick.text() = $(event.target).text();
-  $lyricClick.text($(event.target).text());
->>>>>>> 5bf56166e4ba57666c61121d63174fe6fed8cb29
+    console.log($(event.target).text());
+    console.log($lyricClick.text());
+    //$lyricClick.text() = $(event.target).text();
+    $lyricClick.text($(event.target).text());
 });
