@@ -8,13 +8,13 @@ function enterSong(event) {
     event.preventDefault();
     var songtoSearch = inputSong.val().trim();
     var artisttoSearch = inputArtist.val().trim();
-    if (songtoSearch) {
+    if (songtoSearch && artisttoSearch) {
         //  searchSong("ACDC", "Highway to hell");
         searchSong(songtoSearch, artisttoSearch);
     }
 }
 
-function searchSong(artist, song) {
+function searchSong(song, artist) {
     var songUrl =
         "https://private-anon-e83b93ca5b-lyricsovh.apiary-proxy.com/v1/" +
         encodeURIComponent(artist) +
@@ -26,7 +26,8 @@ function searchSong(artist, song) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            console.log(data, "data");
+
             var lyrics = data.lyrics.split("\r\n")[1];
             var individualLyric = lyrics.split("\n");
             getLyrics(lyrics, individualLyric);
@@ -35,6 +36,7 @@ function searchSong(artist, song) {
             console.error(error);
         });
 }
+
 function getLyrics(lyrics, individualLyric) {
     $("form")[0].reset();
     $(".lyric-text").text(" ");
