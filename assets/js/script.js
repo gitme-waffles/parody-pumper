@@ -4,6 +4,7 @@ var resultArea = $(".result-container");
 var inputSong = $("#songName");
 var inputArtist = $("#artistName");
 var $lyricText = $(".lyric-text");
+var $wordsBoxEl = $(".words-box");
 var $lyricClick;
 
 searchBtn.on("click", enterSong);
@@ -56,7 +57,6 @@ function searchSong(song, artist) {
     var lyrics = data.lyrics.split("\r\n")[1];
     console.log(lyrics);
     renderLyricsToScreen(lyrics);
-    convertText();
   });
 }
 
@@ -89,7 +89,7 @@ function renderLyricsToScreen(lyrics) {
     }
   }
 
-  $(".lyric-text").append(lyrics);
+  $lyricText.append(lyrics);
 }
 
 //function to dispaly song name and artist name as heading
@@ -127,7 +127,6 @@ function getWordRhymes(searchWord) {
       printRhyming(["No Rhymes Found"]);
     });
 }
-
 //fetch synonyms from wordAPI
 function getWordSynonyms(searchWord) {
   var searchUrl =
@@ -207,14 +206,23 @@ function printAntonyms(wordArr) {
   }
 }
 
-// event deligation - click on lyric word.
-$(".lyric-text").on("click", "span", function (event) {
+// event delegation - click on lyric word.
+$lyricText.on("click", "span", function (event) {
   if ($lyricClick) {
     $lyricClick.removeClass("highLightColor");
+    $lyricClick.addClass("changedColor");
   }
   $lyricClick = $(event.target);
-  $lyricClick.attr({ class: "highLightColor" });
+  $lyricClick.addClass("highLightColor");
   getWordRhymes($lyricClick.text());
   getWordSynonyms($lyricClick.text());
   getWordAntonyms($lyricClick.text());
+});
+
+// Event delegation
+$wordsBoxEl.on("click", "li", function (event) {
+  console.log($(event.target).text());
+  console.log($lyricClick.text());
+  //$lyricClick.text() = $(event.target).text();
+  $lyricClick.text($(event.target).text());
 });
