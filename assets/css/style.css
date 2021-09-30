@@ -92,6 +92,8 @@ button:hover {
   flex: 1;
   padding: 20px;
   line-height: 25px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 #song,
 #artist {
@@ -102,4 +104,13 @@ button:hover {
 }
 h2 {
   font-size: 25px;
+}
+.wordDiv {
+  margin: 1rem 0;
+  max-height: 33vh;
+  overflow-y: auto;
+}
+.highLightColor {
+  background-color: yellow;
+  color: black;
 }
