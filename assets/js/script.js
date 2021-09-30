@@ -11,6 +11,7 @@ function enterSong(event) {
     if (songtoSearch && artisttoSearch) {
         //  searchSong("ACDC", "Highway to hell");
         searchSong(songtoSearch, artisttoSearch);
+        addHeading(songtoSearch, artisttoSearch);
     }
 }
 
@@ -37,12 +38,23 @@ function searchSong(song, artist) {
         });
 }
 
+//function to display song in container
 function getLyrics(lyrics, individualLyric) {
     $("form")[0].reset();
     $(".lyric-text").text(" ");
+
     console.log(lyrics, "lyrics of song");
-    console.log(individualLyric, "individual Lyrics");
+    // console.log(individualLyric, "individual Lyrics");
+
     $(".lyric-text").append(lyrics);
+}
+
+//function to dispaly song name and artist name as heading
+function addHeading(song, artist) {
+    $("#song").text(" ");
+    $("#artist").text(" ");
+    $("#song").append(song.toUpperCase());
+    $("#artist").append(artist.toUpperCase());
 }
 
 function convertText() {
