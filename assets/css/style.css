@@ -92,6 +92,8 @@ button:hover {
   flex: 1;
   padding: 20px;
   line-height: 25px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 #song,
 #artist {
@@ -103,9 +105,25 @@ button:hover {
 h2 {
   font-size: 25px;
 }
+<<<<<<< HEAD
 #copyBtn{
   float:right;
   border: none;
   width:fit-content;
   cursor: pointer;
 }
+=======
+.wordDiv {
+  margin: 1rem 0;
+  max-height: 33vh;
+  overflow-y: auto;
+}
+.highLightColor {
+  background-color: yellow;
+  color: black;
+}
+.changedColor {
+  background-color: lightseagreen;
+  color: black;
+}
+>>>>>>> 5bf56166e4ba57666c61121d63174fe6fed8cb29
