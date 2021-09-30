@@ -71,5 +71,3 @@ $(".lyric-text").on("click", "span", function (event) {
     console.log($(event.target).text());
     // click on text function goes here
 });
-
-
