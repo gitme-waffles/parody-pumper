@@ -7,6 +7,11 @@ var $lyricText = $(".lyric-text");
 var copytoClip = $("#copyBtn");
 searchBtn.on("click", enterSong);
 copytoClip.on("click", copyToClipboard);
+var $wordsBoxEl = $(".words-box");
+var $lyricClick;
+
+searchBtn.on("click", enterSong);
+
 function enterSong(event) {
     event.preventDefault();
     var songtoSearch = inputSong.val().trim();
@@ -85,6 +90,8 @@ function renderLyricsToScreen(lyrics) {
         // "" // we add a br
         // "Text" // we wrap it in a div
         if (lyrics[i] !== "") {
+        console.log();
+        if (splitLyricsIntoLines[i] !== "") {
             var paraContainer = $("<div>");
             var words = splitLyricsIntoLines[i].split(" ");
             for (let j = 0; j < words.length; j++) {
@@ -102,6 +109,7 @@ function renderLyricsToScreen(lyrics) {
     }
 
     $(".lyric-text").append(lyrics);
+    $lyricText.append(lyrics);
 }
 
 //function to dispaly song name and artist name as heading
@@ -119,9 +127,129 @@ function convertText() {
     //     $(".lyric-text").text(""); // clear the text
     //     $(".lyric-text").append(x); // add the clickable text
     //   });
+//fetch rhymes from wordAPI
+function getWordRhymes(searchWord) {
+    var searchUrl = "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/rhymes";
+    fetch(searchUrl, {
+        method: "GET",
+        headers: {
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
+        },
+    })
+        .then((response) => {
+            console.log(response);
+            return response.json(response);
+        })
+        .then((data) => {
+            console.log(data);
+            if (!data.rhymes.all) {
+                throw new Error("No Rhymes Found");
+            }
+            printRhyming(data.rhymes.all);
+        })
+        .catch((err) => {
+            console.log(err);
+            printRhyming(["No Rhymes Found"]);
+        });
 }
+//fetch synonyms from wordAPI
+function getWordSynonyms(searchWord) {
+    var searchUrl = "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/synonyms";
+    fetch(searchUrl, {
+        method: "GET",
+        headers: {
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
+        },
+    })
+        .then((response) => {
+            console.log(response);
+            return response.json(response);
+        })
+        .then((data) => {
+            console.log(data);
+            if (!data.synonyms) {
+                throw new Error("No synonyms Found");
+            }
+            printSynonyms(data.synonyms);
+        })
+        .catch((err) => {
+            console.log(err);
+            printSynonyms(["No synonyms Found"]);
+        });
+}
+//fetch antonyms from wordAPI
+function getWordAntonyms(searchWord) {
+    var searchUrl = "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/antonyms";
+    fetch(searchUrl, {
+        method: "GET",
+        headers: {
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
+        },
+    })
+        .then((response) => {
+            console.log(response);
+            return response.json(response);
+        })
+        .then((data) => {
+            console.log(data);
+            if (!data.antonyms || data.antonyms.length === 0) {
+                throw new Error("No antonyms Found");
+            }
+            printAntonyms(data.antonyms);
+        })
+        .catch((err) => {
+            console.log(err);
+            printAntonyms(["No antonyms Found"]);
+        });
+}
+// Print rhymes to screen
+function printRhyming(wordArr) {
+    $("#rhymingWords").text(""); //clear any children
+    for (var i = 0; i < wordArr.length; i++) {
+        rhymeEl = $("<li>").text(wordArr[i]);
+        $("#rhymingWords").append(rhymeEl);
+    }
+}
+// Print Synonyms to screen
+function printSynonyms(wordArr) {
+    $("#synonyms").text(""); //clear any children
+    for (var i = 0; i < wordArr.length; i++) {
+        rhymeEl = $("<li>").text(wordArr[i]);
+        $("#synonyms").append(rhymeEl);
+    }
+}
+//Print Antonyms to screen
+function printAntonyms(wordArr) {
+    $("#antonyms").text(""); //clear any children
+    for (var i = 0; i < wordArr.length; i++) {
+        rhymeEl = $("<li>").text(wordArr[i]);
+        $("#antonyms").append(rhymeEl);
+    }
+}
+
+// event delegation - click on lyric word.
+$lyricText.on("click", "span", function (event) {
+    if ($lyricClick) {
+        $lyricClick.removeClass("highLightColor");
+        $lyricClick.addClass("changedColor");
+    }
+    $lyricClick = $(event.target);
+    $lyricClick.addClass("highLightColor");
+    getWordRhymes($lyricClick.text());
+    getWordSynonyms($lyricClick.text());
+    getWordAntonyms($lyricClick.text());
+});
 
 $(".lyric-text").on("click", "span", function (event) {
     console.log($(event.target).text());
     // click on text function goes here
+// Event delegation
+$wordsBoxEl.on("click", "li", function (event) {
+    console.log($(event.target).text());
+    console.log($lyricClick.text());
+    //$lyricClick.text() = $(event.target).text();
+    $lyricClick.text($(event.target).text());
 });
