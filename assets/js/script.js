@@ -4,14 +4,11 @@ var resultArea = $(".result-container");
 var inputSong = $("#songName");
 var inputArtist = $("#artistName");
 var $lyricText = $(".lyric-text");
-var copytoClip = $("#copyBtn");
-searchBtn.on("click", enterSong);
-copytoClip.on("click", copyToClipboard);
 var $wordsBoxEl = $(".words-box");
 var $lyricClick;
-
+var $copyToclip = $("#copyBtn");
 searchBtn.on("click", enterSong);
-
+$copyToclip.on("click", copyFunc);
 function enterSong(event) {
     event.preventDefault();
     var songtoSearch = inputSong.val().trim();
@@ -22,20 +19,7 @@ function enterSong(event) {
         addHeading(songtoSearch, artisttoSearch);
     }
 }
-// little algorithm
 
-function copyToClipboard() {
-    //     // get the lyric text element
-    //     // iterate through the childrend
-    //     // if its a div, iterate through the words
-    //     // if its a break, skip it and add a new line (\n)
-    //     // sum up the strings into the original song lyric
-    var $child = $lyricText.children();
-    console.log($child);
-    for (var i = 0; i < $child.length; i++) {
-        console.log($child[i]);
-    }
-}
 function searchSong(song, artist) {
     var songUrl =
         "https://private-anon-e83b93ca5b-lyricsovh.apiary-proxy.com/v1/" +
@@ -73,7 +57,6 @@ function searchSong(song, artist) {
         var lyrics = data.lyrics.split("\r\n")[1];
         console.log(lyrics);
         renderLyricsToScreen(lyrics);
-        convertText();
     });
 }
 
@@ -90,8 +73,6 @@ function renderLyricsToScreen(lyrics) {
         // "" // we add a br
         // "Text" // we wrap it in a div
         if (lyrics[i] !== "") {
-        console.log();
-        if (splitLyricsIntoLines[i] !== "") {
             var paraContainer = $("<div>");
             var words = splitLyricsIntoLines[i].split(" ");
             for (let j = 0; j < words.length; j++) {
@@ -108,25 +89,50 @@ function renderLyricsToScreen(lyrics) {
         }
     }
 
-    $(".lyric-text").append(lyrics);
     $lyricText.append(lyrics);
 }
 
-//function to dispaly song name and artist name as heading
+//function to display song name and artist name as heading
 function addHeading(song, artist) {
     $("#song").text(" ");
     $("#artist").text(" ");
     $("#song").append(song.toUpperCase());
     $("#artist").append(artist.toUpperCase());
 }
+function copyFunc() {
+    // get the lyric text element
+    // iterate through the childrend
+    // if its a div, iterate through the words
+    // if its a break, skip it and add a new line (\n)
+    // sum up the strings into the original song lyric
+    // var copyText = “”;
+    // for (var i = 0; i < $lyricText.children().length; i++) {
+    //   var $lyricLine = $lyricText.children().eq(i).children();
+    //   for (var j = 0; j < $lyricLine.length; j++) {
+    //     copyText += $lyricLine.eq(j).text();
+    //     if (j < $lyricLine.length - 1) {
+    //       copyText += ” “;
+    //     }
+    //   }
+    //   copyText += “\n”; // add a new line
+    // }
+    // console.log(copyText);
 
-function convertText() {
-    //   $(".lyric-text").each(function () {
-    //     var lyricEl = $(this);
-    //     var x = lyricEl.text().replace(/(\w+)/gi, "<span>$1</span>");
-    //     $(".lyric-text").text(""); // clear the text
-    //     $(".lyric-text").append(x); // add the clickable text
-    //   });
+    var $childDiv = $(".lyric-text").children();
+
+    // var $grandchild = $(".lyric-text").find("span").text();
+    console.log($childDiv, "child div");
+    // console.log($grandchild, "grand child");
+    var $childSpan = $(".lyric-text>div>span");
+    console.log($childSpan);
+
+    for (var i = 0; i < $childDiv.length; i++) {
+        console.log($childDiv[i]);
+    }
+    var $lyricText = $(".lyric-text");
+    console.log($lyricText.children().length, "lyric text");
+    console.log($lyricText.children().length, "lyric text");
+}
 //fetch rhymes from wordAPI
 function getWordRhymes(searchWord) {
     var searchUrl = "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/rhymes";
@@ -243,9 +249,6 @@ $lyricText.on("click", "span", function (event) {
     getWordAntonyms($lyricClick.text());
 });
 
-$(".lyric-text").on("click", "span", function (event) {
-    console.log($(event.target).text());
-    // click on text function goes here
 // Event delegation
 $wordsBoxEl.on("click", "li", function (event) {
     console.log($(event.target).text());
