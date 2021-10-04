@@ -20,7 +20,6 @@ header {
     #00bf72,
     #a8eb12
   );
-  height: 200px;
   width: 100%;
 }
 
@@ -117,4 +116,16 @@ h2 {
 .changedColor {
   background-color: lightseagreen;
   color: black;
+}
+
+#rctSrchContainer {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+#recentSrchEl {
+  width: 300px;
+  /* padding: 0.75rem;
+  margin: 0 0 0.5rem 0; */
+  /* border-radius: 15px; */
 }

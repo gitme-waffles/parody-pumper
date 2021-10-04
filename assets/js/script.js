@@ -88,7 +88,7 @@ function renderLyricsToScreen(lyrics) {
       $lyricText.append(breakElem);
     }
   }
-  //Add song and Artist to recently searched.
+  //Add song and Artist to recently searched - local storage.
   if (recentSearch !== null) {
     recentSearch.push({ artist: artisttoSearch, song: songtoSearch });
   } else {
@@ -238,20 +238,24 @@ function getRecent() {
   if (recentSearch === null) {
     return;
   }
-  //add in the search dropdown here
-  console.log(recentSearch);
+  for (var i = 0; i < recentSearch.length; i++) {
+    var $optionEl = $("<option>").text(
+      recentSearch[i].song + " - " + recentSearch[i].artist
+    );
+    $("#recentSrchEl").append($optionEl);
+  }
 }
 
 function saveRecent() {
-  //recentSearch[0] = { artist: "ACDC", song: "Highway To Hell" };
-  //recentSearch[1] = { artist: "Van Halen", song: "Dreams" };
   localStorage.setItem("searches", JSON.stringify(recentSearch));
 }
 
 function init() {
-  //load local storage
-  //saveRecent();
   getRecent();
 }
 
 init(); //Initialise
+
+// $(function () {
+//   $("#recentSrchEl").selectmenu();
+// });
