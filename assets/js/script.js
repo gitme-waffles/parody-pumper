@@ -9,6 +9,7 @@ var $lyricClick;
 var $copyToclip = $("#copyBtn");
 var $lyricClick, songtoSearch, artisttoSearch;
 var recentSearch = [];
+var changedLyric = [];
 
 searchBtn.on("click", enterSong);
 $copyToclip.on("click", copyFunc);
@@ -299,7 +300,21 @@ $lyricText.on("click", "span", function (event) {
 // Event delegation
 $wordsBoxEl.on("click", "li", function (event) {
   if ($(event.target).data("use")) {
+    if (changedLyric === null) {
+      changedLyric[0] = {
+        target: $lyricClick,
+        origional: $lyricClick.text(),
+        new: $(event.target).text(),
+      };
+    } else {
+      changedLyric.push({
+        target: $lyricClick,
+        origional: $lyricClick.text(),
+        new: $(event.target).text(),
+      });
+    }
     $lyricClick.text($(event.target).text());
+    console.log(changedLyric);
   } else {
     return;
   }
@@ -328,17 +343,14 @@ function getRecent() {
   $("#recentSrchEl").append($("<option>").text("Select Recent Searches"));
   $("#recentSrchEl").prop("disabled", true);
 
-  recentSearch = JSON.parse(localStorage.getItem("searches"));
-  if (recentSearch === null) {
-    return;
-  }
+  recentSearch = JSON.parse(localStorage.getItem("searches")) || [];
   for (var i = 0; i < recentSearch.length; i++) {
     var $optionEl = $("<option>").text(
       recentSearch[i].song + " - " + recentSearch[i].artist
     );
     $("#recentSrchEl").append($optionEl);
+    $("#recentSrchEl").prop("disabled", false);
   }
-  $("#recentSrchEl").prop("disabled", false);
 }
 
 function saveRecent() {
