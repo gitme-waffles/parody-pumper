@@ -180,11 +180,11 @@ function getWordRhymes(searchWord) {
       if (!data.rhymes.all) {
         throw new Error("No Rhymes Found");
       }
-      printRhyming(data.rhymes.all);
+      printRhyming(data.rhymes.all, true);
     })
     .catch((err) => {
       console.log(err);
-      printRhyming(["No Rhymes Found"]);
+      printRhyming(["No Rhymes Found"], false);
     });
 }
 //fetch synonyms from wordAPI
@@ -234,19 +234,26 @@ function getWordAntonyms(searchWord) {
       if (!data.antonyms || data.antonyms.length === 0) {
         throw new Error("No antonyms Found");
       }
-      printAntonyms(data.antonyms);
+      printAntonyms(data.antonyms, true);
     })
     .catch((err) => {
       console.log(err);
-      printAntonyms(["No antonyms Found"]);
+      printAntonyms(["No antonyms Found"], false);
     });
 }
 // Print rhymes to screen
-function printRhyming(wordArr) {
+function printRhyming(wordArr, useMe) {
   $("#rhymingWords").text(""); //clear any children
-  for (var i = 0; i < wordArr.length; i++) {
-    rhymeEl = $("<li>").text(wordArr[i]);
-    $("#rhymingWords").append(rhymeEl);
+  if (!useMe) {
+    for (var i = 0; i < wordArr.length; i++) {
+      rhymeEl = $("<li>").text(wordArr[0]).attr({ "data-use": useMe });
+      $("#rhymingWords").append(rhymeEl);
+    }
+  } else {
+    for (var i = 0; i < wordArr.length; i++) {
+      rhymeEl = $("<li>").text(wordArr[i]).attr({ "data-use": useMe });
+      $("#rhymingWords").append(rhymeEl);
+    }
   }
 }
 // Print Synonyms to screen
@@ -263,11 +270,16 @@ function printSynonyms(wordArr, useMe) {
   }
 }
 //Print Antonyms to screen
-function printAntonyms(wordArr) {
+function printAntonyms(wordArr, useMe) {
   $("#antonyms").text(""); //clear any children
-  for (var i = 0; i < wordArr.length; i++) {
-    rhymeEl = $("<li>").text(wordArr[i]);
+  if (!useMe) {
+    rhymeEl = $("<li>").text(wordArr[0]).attr({ "data-use": useMe });
     $("#antonyms").append(rhymeEl);
+  } else {
+    for (var i = 0; i < wordArr.length; i++) {
+      rhymeEl = $("<li>").text(wordArr[i]).attr({ "data-use": useMe });
+      $("#antonyms").append(rhymeEl);
+    }
   }
 }
 
