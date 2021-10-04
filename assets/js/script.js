@@ -17,6 +17,14 @@ function enterSong(event) {
     //  searchSong("ACDC", "Highway to hell");
     searchSong(songtoSearch, artisttoSearch);
     addHeading(songtoSearch, artisttoSearch);
+
+    if (recentSearch !== null) {
+      recentSearch.push({ artist: artisttoSearch, song: songtoSearch });
+    } else {
+      recentSearch = [{ artist: artisttoSearch, song: songtoSearch }];
+    }
+    saveRecent();
+    getRecent();
   }
 }
 
@@ -89,12 +97,6 @@ function renderLyricsToScreen(lyrics) {
     }
   }
   //Add song and Artist to recently searched - local storage.
-  if (recentSearch !== null) {
-    recentSearch.push({ artist: artisttoSearch, song: songtoSearch });
-  } else {
-    recentSearch = [{ artist: artisttoSearch, song: songtoSearch }];
-  }
-  saveRecent();
 }
 
 //function to dispaly song name and artist name as heading
@@ -261,11 +263,11 @@ function init() {
 
 // search here for a chnage in the recent search list
 $("#recentSrchEl").on("change", function (event) {
-  //console.log(event.target.options.selectedIndex);
   songtoSearch = recentSearch[event.target.options.selectedIndex - 1].song;
   artisttoSearch = recentSearch[event.target.options.selectedIndex - 1].artist;
   searchSong(songtoSearch, artisttoSearch);
   addHeading(songtoSearch, artisttoSearch);
+  $("#recentSrchEl").get(0).selectedIndex = 0;
 });
 
 init(); //Initialise
