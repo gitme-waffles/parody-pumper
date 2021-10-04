@@ -234,6 +234,10 @@ $wordsBoxEl.on("click", "li", function (event) {
 
 function getRecent() {
   recentSearch = null;
+  $("#recentSrchEl").text("");
+  $("#recentSrchEl").append($("<option>").text("Select Recent Searches"));
+  $("#recentSrchEl").prop("disabled", true);
+
   recentSearch = JSON.parse(localStorage.getItem("searches"));
   if (recentSearch === null) {
     return;
@@ -244,6 +248,7 @@ function getRecent() {
     );
     $("#recentSrchEl").append($optionEl);
   }
+  $("#recentSrchEl").prop("disabled", false);
 }
 
 function saveRecent() {
@@ -254,8 +259,13 @@ function init() {
   getRecent();
 }
 
-init(); //Initialise
+// search here for a chnage in the recent search list
+$("#recentSrchEl").on("change", function (event) {
+  //console.log(event.target.options.selectedIndex);
+  songtoSearch = recentSearch[event.target.options.selectedIndex - 1].song;
+  artisttoSearch = recentSearch[event.target.options.selectedIndex - 1].artist;
+  searchSong(songtoSearch, artisttoSearch);
+  addHeading(songtoSearch, artisttoSearch);
+});
 
-// $(function () {
-//   $("#recentSrchEl").selectmenu();
-// });
+init(); //Initialise
