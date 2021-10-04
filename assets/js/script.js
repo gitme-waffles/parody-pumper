@@ -5,13 +5,14 @@ var inputSong = $("#songName");
 var inputArtist = $("#artistName");
 var $lyricText = $(".lyric-text");
 var $wordsBoxEl = $(".words-box");
-var $lyricClick;
+var $lyricClick, songtoSearch, artisttoSearch;
+var recentSearch = [];
 
 searchBtn.on("click", enterSong);
 function enterSong(event) {
   event.preventDefault();
-  var songtoSearch = inputSong.val().trim();
-  var artisttoSearch = inputArtist.val().trim();
+  songtoSearch = inputSong.val().trim();
+  artisttoSearch = inputArtist.val().trim();
   if (songtoSearch && artisttoSearch) {
     //  searchSong("ACDC", "Highway to hell");
     searchSong(songtoSearch, artisttoSearch);
@@ -52,10 +53,9 @@ function searchSong(song, artist) {
   });
 
   mockedResponse.then(function (data) {
-    console.log(data, "data");
-
+    //console.log(data, "data");
     var lyrics = data.lyrics.split("\r\n")[1];
-    console.log(lyrics);
+    //console.log(lyrics);
     renderLyricsToScreen(lyrics);
   });
 }
@@ -65,7 +65,7 @@ function renderLyricsToScreen(lyrics) {
   inputArtist.val("");
   inputSong.val("");
 
-  console.log(lyrics, "lyrics of song");
+  //console.log(lyrics, "lyrics of song");
   // console.log(individualLyric, "individual Lyrics");
   var splitLyricsIntoLines = lyrics.split("\n");
 
@@ -88,6 +88,13 @@ function renderLyricsToScreen(lyrics) {
       $lyricText.append(breakElem);
     }
   }
+  //Add song and Artist to recently searched.
+  if (recentSearch !== null) {
+    recentSearch.push({ artist: artisttoSearch, song: songtoSearch });
+  } else {
+    recentSearch = [{ artist: artisttoSearch, song: songtoSearch }];
+  }
+  saveRecent();
 }
 
 //function to dispaly song name and artist name as heading
@@ -224,3 +231,27 @@ $wordsBoxEl.on("click", "li", function (event) {
   //$lyricClick.text() = $(event.target).text();
   $lyricClick.text($(event.target).text());
 });
+
+function getRecent() {
+  recentSearch = null;
+  recentSearch = JSON.parse(localStorage.getItem("searches"));
+  if (recentSearch === null) {
+    return;
+  }
+  //add in the search dropdown here
+  console.log(recentSearch);
+}
+
+function saveRecent() {
+  //recentSearch[0] = { artist: "ACDC", song: "Highway To Hell" };
+  //recentSearch[1] = { artist: "Van Halen", song: "Dreams" };
+  localStorage.setItem("searches", JSON.stringify(recentSearch));
+}
+
+function init() {
+  //load local storage
+  //saveRecent();
+  getRecent();
+}
+
+init(); //Initialise
