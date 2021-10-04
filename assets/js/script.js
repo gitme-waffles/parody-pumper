@@ -30,18 +30,20 @@ function enterSong(event) {
   }
 }
 
-function modalError(error) {
+function modalError(eMessage) {
   // clears all previous info
   $('#modalField').html('')
-  console.log(error)
+  console.log(eMessage)
   // create El
   var errorEl =  $("<p>")
-      
+  var songVal = inputSong.val()
+  var artistVal = inputArtist.val()
+
   // set innerHTML with a value =>> error
-  if (error == 404) {
-    errorEl.html(`Error ${error} <br /> Could not find `)
+  if (eMessage == 404) {
+    errorEl.html(`Error ${eMessage} <br /> Could not find '${songVal}' by '${artistVal}'`)
   } else {
-    errorEl.html(`Error ${error}`)
+    errorEl.html(`Error ${eMessage}`)
   }
 
   $('#modalField').append(errorEl)
@@ -72,46 +74,46 @@ function searchSong(song, artist) {
     encodeURIComponent(song);
 
   // DO NOT REMOVE!
-  // fetch(songUrl)
-  //   .then(function (response) {
-  //       console.log(response);
-  //       if (response.status != 200) {
-  //         errorModal(response.status)
-  //       }
-  //       return response.json();
-  //   })
-  //   .then(function (data) {
-  //     console.log(data, "data");
+  fetch(songUrl)
+    .then(function (response) {
+        console.log(response);
+        if (response.status != 200) {
+          modalError(response.status)
+        }
+        return response.json();
+    })
+    .then(function (data) {
+      console.log(data, "data");
 
-  //     var lyrics = data.lyrics.split("\r\n")[1];
-  //     //console.log(lyrics);
-  //     renderLyricsToScreen(lyrics);
-  //     convertText();
-  //   }).catch(function() {
-  //     console.log(Error);
-  //     modalError(Error);
+      var lyrics = data.lyrics.split("\r\n")[1];
+      //console.log(lyrics);
+      renderLyricsToScreen(lyrics);
+      convertText();
+    }).catch(function(e) {
+      console.log(e);
+      // modalError(e.message);
+  });
+
+  // var mockedResponse = new Promise(function (res) {
+  //   res({
+  //     lyrics:
+  //       "Paroles de la chanson Adventure Of A Lifetime par Coldplay\r\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nWe are legends\nEvery day\nThat's what she told him!\n\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\nWe are diamonds\n\nI feel my heart beating\nI feel my heart beneath my skin\nI feel my heart beating\n\n\nOhhh, you make me feel\nLike I'm alive again\nAlive again\nOhhh, you make me feel\nLike I'm alive again\n\nSaid I can't go on, not in this way\nI'm a dream, I die by light of day\nGonna hold up half the sky and say\nOhhh, we are omen\n\nI feel my heart beating\nI feel my heart beneath my skin\nOhhh, I can feel my heart beating\nCause you make me feel\nLike I'm alive again\nAlive again...\n\nOhhh, you make me feel\nLike I'm alive again\n\nTurn your magic on, to me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\n\nWe are diamonds taking shape!\nWe are diamonds taking shape!\n\nIf we've only got this life\nThen this adventure, more than I\nAnd if we've only got this life\nYou'll get me through alive\nAnd if we've only got this life\nThen this adventure, more than I\nWanna share with you\nWith you, with you\n\nI said, oh, say oh\n\nWoo hoo, woo hoo...",
+  //   });
   // });
 
-  var mockedResponse = new Promise(function (res) {
-    res({
-      lyrics:
-        "Paroles de la chanson Adventure Of A Lifetime par Coldplay\r\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nWe are legends\nEvery day\nThat's what she told him!\n\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\nWe are diamonds\n\nI feel my heart beating\nI feel my heart beneath my skin\nI feel my heart beating\n\n\nOhhh, you make me feel\nLike I'm alive again\nAlive again\nOhhh, you make me feel\nLike I'm alive again\n\nSaid I can't go on, not in this way\nI'm a dream, I die by light of day\nGonna hold up half the sky and say\nOhhh, we are omen\n\nI feel my heart beating\nI feel my heart beneath my skin\nOhhh, I can feel my heart beating\nCause you make me feel\nLike I'm alive again\nAlive again...\n\nOhhh, you make me feel\nLike I'm alive again\n\nTurn your magic on, to me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\n\nWe are diamonds taking shape!\nWe are diamonds taking shape!\n\nIf we've only got this life\nThen this adventure, more than I\nAnd if we've only got this life\nYou'll get me through alive\nAnd if we've only got this life\nThen this adventure, more than I\nWanna share with you\nWith you, with you\n\nI said, oh, say oh\n\nWoo hoo, woo hoo...",
-    });
-  });
+  // mockedResponse.then(function (data) {
+  //     console.log(data);
+  //     throw new Error();
+  //   console.log(data, "data");
 
-  mockedResponse.then(function (data) {
-      console.log(data);
-      throw console.error('thrown error');
-    console.log(data, "data");
-
-    var lyrics = data.lyrics.split("\r\n")[1];
-    //console.log(lyrics);
-    renderLyricsToScreen(lyrics);
-    convertText();
-  }).catch(function() {
-      console.log(Error);
-      modalError(Error);
-  });
+  //   var lyrics = data.lyrics.split("\r\n")[1];
+  //   //console.log(lyrics);
+  //   renderLyricsToScreen(lyrics);
+  //   convertText();
+  // }).catch(function(e) {
+  //     console.log(e);
+  //     modalError(e.message);
+  // });
 }
 
 //function to display song in container
