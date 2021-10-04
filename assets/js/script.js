@@ -25,19 +25,21 @@ function enterSong(event) {
     }
     saveRecent();
     getRecent();
+  } else {
+    renderModal()
   }
 }
 
 function modalError(error) {
-  // create El
+  // clears all previous info
   $('#modalField').html('')
   console.log(error)
+  // create El
   var errorEl =  $("<p>")
       
   // set innerHTML with a value =>> error
   if (error == 404) {
     errorEl.html(`Error ${error} <br /> Could not find `)
-
   } else {
     errorEl.html(`Error ${error}`)
   }
@@ -51,10 +53,16 @@ function modalError(error) {
   });
 }
 
-    function renderModal(error) {
-  
-      
-    }
+function renderModal() {
+  $('#modalField').html('')
+  var errorEl =  $("<p>")
+  errorEl.html(`Song and Artist is required`)
+  $('#modalField').append(errorEl)
+  $('#modal').removeClass("hide")
+  $('#modal').modal({
+  fadeDuration: 100
+  });
+}
 
 function searchSong(song, artist) {
   var songUrl =
@@ -65,21 +73,24 @@ function searchSong(song, artist) {
 
   // DO NOT REMOVE!
   // fetch(songUrl)
-  //     .then(function (response) {
-  //         console.log(response);
-  //         return response.json();
-  //     })
-  //     .then(function (data) {
-  //         console.log(data, "data");
+  //   .then(function (response) {
+  //       console.log(response);
+  //       if (response.status != 200) {
+  //         errorModal(response.status)
+  //       }
+  //       return response.json();
+  //   })
+  //   .then(function (data) {
+  //     console.log(data, "data");
 
-  //         var lyrics = data.lyrics.split("\r\n")[1];
-  //         var individualLyric = lyrics.split("\n");
-  //         getLyrics(lyrics, individualLyric);
-  //         convertText();
-  //     })
-  //     .catch(function (error) {
-  //         console.log(error);
-  //     });
+  //     var lyrics = data.lyrics.split("\r\n")[1];
+  //     //console.log(lyrics);
+  //     renderLyricsToScreen(lyrics);
+  //     convertText();
+  //   }).catch(function() {
+  //     console.log(Error);
+  //     modalError(Error);
+  // });
 
   var mockedResponse = new Promise(function (res) {
     res({
