@@ -1,109 +1,212 @@
 * {
-  padding: 0%;
-  margin: 0%;
-  box-sizing: border-box;
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Gochi Hand", cursive;
-  background-color: rgb(40, 40, 40);
-  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #413F3D;
+  background-color: #F2F1EF;
 }
 
 header {
   padding: 30px;
-  background-image: linear-gradient(
-    to right top,
-    #051937,
-    #004d7a,
-    #008793,
-    #00bf72,
-    #a8eb12
-  );
   width: 100%;
+  background-color: #B1a6A4;
 }
 
 .container h1 {
   margin-bottom: 20px;
   letter-spacing: 2px;
   text-align: left;
+  display: block;
 }
 
-.inputtext {
+.inputText {
   border-radius: 10px;
   border: none;
-}
-#songName,
-#artistName {
-  width: 500px;
-  height: 45px;
+  padding: 20px;
+  margin: 5px;
+  width: 25%;
 }
 
 span {
-  font-size: 25px;
-  margin: 0 10px;
+    font-size: 25px;
+    margin: 0 10px;
 }
 
 button {
   width: 100px;
   height: 45px;
-  background: cornflowerblue;
+  background: #45575c;
   color: white;
   border-radius: 10px;
   font-size: 20px;
 }
 
 button:hover {
-  background-color: turquoise;
+  background-color: #627d85;
 }
 
 .boxes-div {
   font-family: "Roboto Condensed", sans-serif;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
 }
 
 .lyric-text {
-  white-space: pre;
-  cursor: pointer;
-  padding-top: 3px;
-  margin-top: 20px;
-}
-
-.lyric-text-div {
-  border: 2px white solid;
-  flex: 1;
-  margin-right: 20px;
-  height: 90%;
+    white-space: pre;
+    cursor: pointer;
+    padding-top: 3px;
+    margin-top: 20px;
 }
 
 .lyric-text span:hover {
-  background-color: cyan;
+  background-color: #45575c;
 }
-
-/* .words-box {
-    
-} */
 
 .words-box,
 .lyric-text-div {
-  border: 2px white solid;
-  border-radius: 15px;
-  flex: 1;
-  padding: 20px;
-  line-height: 25px;
-  max-height: 80vh;
-  overflow-y: auto;
+    
+    border: 2px white solid;
+    border-radius: 10px;
+    flex: 1;
+    padding: 20px;
+    line-height: 25px;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin-top: 10px;
 }
+
 #song,
 #artist {
   font-size: 25px;
   font-weight: bold;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-style: italic;
 }
+
 h2 {
-  font-size: 25px;
+    font-size: 25px;
 }
+
+.search-btn-div {
+  padding-top: 10px;
+  margin: 10px;
+}
+
+.results-heading {
+  margin: 20px;
+  text-align: center;
+}
+
+.card {
+  padding: 10px;
+  flex: 0 1 40%;
+  color: #F2F1EF;
+  background-color: #697184;
+  border: 2px #697184 solid;
+  border-radius: 15px;
+  padding: 20px;
+  line-height: 25px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.wordDiv {
+    margin: 1rem 0;
+    max-height: 33vh;
+    overflow-y: auto;
+}
+.highLightColor {
+    background-color: #45575c;
+    color: black;
+}
+.changedColor {
+    background-color: lightseagreen;
+    color: black;
+}
+#copyBtn {
+    float: right;
+    font-size: 15px;
+    width: 100px;
+    height: 50px;
+    /* width: fit-content; */
+    padding: 5px;
+    cursor: pointer;
+    font-family: "Roboto Condensed", sans-serif;
+    /* margin: 3px; */
+    background-color: #45575c;
+}
+#copyBtn:hover {
+    background-color: #627d85;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    position: absolute;
+    float: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; 
+    height: 200px;
+    border-radius: 20px;
+    background-color: rgba(32, 6, 163, 0.4); 
+    
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    background-color: rgb(4, 4, 87);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    height: 50%;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#rctSrchContainer {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+#recentSrchEl {
+  border-radius: 15px;
+  width: 400px;
+  padding: 0.75rem 0.5rem;
+}
+@media screen and (max-width: 700px) {
+  .card {
+    flex-direction: column;
+    min-width: 350px;
+  }
+}
+
+
 .wordDiv {
   margin: 1rem 0;
   max-height: 33vh;
@@ -129,6 +232,7 @@ h2 {
   padding: 0.75rem 0.5rem;
 }
 
+
 /* modal */
 #modal {
   background-color: rgb(40, 40, 40);
@@ -150,4 +254,7 @@ h2 {
 
 .hide {
   display: none;
+
+li {
+  cursor: pointer;
 }

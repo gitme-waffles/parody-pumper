@@ -5,16 +5,18 @@ var inputSong = $("#songName");
 var inputArtist = $("#artistName");
 var $lyricText = $(".lyric-text");
 var $wordsBoxEl = $(".words-box");
+var $lyricClick;
+var $copyToclip = $("#copyBtn");
 var $lyricClick, songtoSearch, artisttoSearch;
 var recentSearch = [];
 
 searchBtn.on("click", enterSong);
+$copyToclip.on("click", copyFunc);
 function enterSong(event) {
   event.preventDefault();
   songtoSearch = inputSong.val().trim();
   artisttoSearch = inputArtist.val().trim();
   if (songtoSearch && artisttoSearch) {
-    //  searchSong("ACDC", "Highway to hell");
     searchSong(songtoSearch, artisttoSearch);
     addHeading(songtoSearch, artisttoSearch);
 
@@ -147,7 +149,7 @@ function renderLyricsToScreen(lyrics) {
   //Add song and Artist to recently searched - local storage.
 }
 
-//function to dispaly song name and artist name as heading
+//function to display song name and artist name as heading
 function addHeading(song, artist) {
   $("#song").text(" ");
   $("#artist").text(" ");
@@ -155,6 +157,57 @@ function addHeading(song, artist) {
   $("#artist").append(artist.toUpperCase());
 }
 
+//function to copy lyrics to clipboard
+function copyFunc() {
+  // get the lyric text element
+  // iterate through the childrend
+  // if its a div, iterate through the words
+  // if its a break, skip it and add a new line (\n)
+  // sum up the strings into the original song lyric
+
+  // var $childDiv = $(".lyric-text").children();
+  // // var $grandchild = $(".lyric-text").find("span").text();
+  // console.log($childDiv, "child div");
+  // // console.log($grandchild, "grand child");
+  // var $childSpan = $(".lyric-text>div>span");
+  // console.log($childSpan);
+  // for (var i = 0; i < $childDiv.length; i++) {
+  //     console.log($childDiv[i]);
+  // }
+  // var $lyricText = $(".lyric-text");
+  // console.log($lyricText.children().length, "lyric text");
+
+  var $lyricText = $(".lyric-text");
+  var copyText = " ";
+  for (var i = 0; i < $lyricText.children().length; i++) {
+    var $lyricLine = $lyricText.children().eq(i).children();
+
+    for (var j = 0; j < $lyricLine.length; j++) {
+      copyText += $lyricLine.eq(j).text();
+      if (j < $lyricLine.length - 1) {
+        copyText += " ";
+      }
+    }
+    copyText += "\n";
+  }
+  console.log(copyText);
+
+  var text = copyText;
+
+  var $temp = $("<textarea>");
+  $("body").append($temp);
+  $temp.text(text).select();
+
+  document.execCommand("copy");
+  $temp.remove();
+  if (copyText !== " ") {
+    modal.style.display = "block";
+  } else {
+    console.log("Nothing to copy");
+  }
+}
+
+function messageDisplay() {}
 //fetch rhymes from wordAPI
 function getWordRhymes(searchWord) {
   var searchUrl =
@@ -175,11 +228,11 @@ function getWordRhymes(searchWord) {
       if (!data.rhymes.all) {
         throw new Error("No Rhymes Found");
       }
-      printRhyming(data.rhymes.all);
+      printRhyming(data.rhymes.all, true);
     })
     .catch((err) => {
       console.log(err);
-      printRhyming(["No Rhymes Found"]);
+      printRhyming(["No Rhymes Found"], false);
     });
 }
 //fetch synonyms from wordAPI
@@ -199,14 +252,14 @@ function getWordSynonyms(searchWord) {
     })
     .then((data) => {
       console.log(data);
-      if (!data.synonyms) {
+      if (!data.synonyms || data.synonyms.length === 0) {
         throw new Error("No synonyms Found");
       }
-      printSynonyms(data.synonyms);
+      printSynonyms(data.synonyms, true);
     })
     .catch((err) => {
-      console.log(err);
-      printSynonyms(["No synonyms Found"]);
+      console.log("Synmon Error : ", err);
+      printSynonyms(["No synonyms Found"], false);
     });
 }
 //fetch antonyms from wordAPI
@@ -229,36 +282,53 @@ function getWordAntonyms(searchWord) {
       if (!data.antonyms || data.antonyms.length === 0) {
         throw new Error("No antonyms Found");
       }
-      printAntonyms(data.antonyms);
+      printAntonyms(data.antonyms, true);
     })
     .catch((err) => {
       console.log(err);
-      printAntonyms(["No antonyms Found"]);
+      printAntonyms(["No antonyms Found"], false);
     });
 }
 
 // Print rhymes to screen
-function printRhyming(wordArr) {
+function printRhyming(wordArr, useMe) {
   $("#rhymingWords").text(""); //clear any children
-  for (var i = 0; i < wordArr.length; i++) {
-    rhymeEl = $("<li>").text(wordArr[i]);
-    $("#rhymingWords").append(rhymeEl);
+  if (!useMe) {
+    for (var i = 0; i < wordArr.length; i++) {
+      rhymeEl = $("<li>").text(wordArr[0]).attr({ "data-use": useMe });
+      $("#rhymingWords").append(rhymeEl);
+    }
+  } else {
+    for (var i = 0; i < wordArr.length; i++) {
+      rhymeEl = $("<li>").text(wordArr[i]).attr({ "data-use": useMe });
+      $("#rhymingWords").append(rhymeEl);
+    }
   }
 }
 // Print Synonyms to screen
-function printSynonyms(wordArr) {
+function printSynonyms(wordArr, useMe) {
   $("#synonyms").text(""); //clear any children
-  for (var i = 0; i < wordArr.length; i++) {
-    rhymeEl = $("<li>").text(wordArr[i]);
+  if (!useMe) {
+    rhymeEl = $("<li>").text(wordArr[0]).attr({ "data-use": useMe });
     $("#synonyms").append(rhymeEl);
+  } else {
+    for (var i = 0; i < wordArr.length; i++) {
+      rhymeEl = $("<li>").text(wordArr[i]).attr({ "data-use": useMe });
+      $("#synonyms").append(rhymeEl);
+    }
   }
 }
 //Print Antonyms to screen
-function printAntonyms(wordArr) {
+function printAntonyms(wordArr, useMe) {
   $("#antonyms").text(""); //clear any children
-  for (var i = 0; i < wordArr.length; i++) {
-    rhymeEl = $("<li>").text(wordArr[i]);
+  if (!useMe) {
+    rhymeEl = $("<li>").text(wordArr[0]).attr({ "data-use": useMe });
     $("#antonyms").append(rhymeEl);
+  } else {
+    for (var i = 0; i < wordArr.length; i++) {
+      rhymeEl = $("<li>").text(wordArr[i]).attr({ "data-use": useMe });
+      $("#antonyms").append(rhymeEl);
+    }
   }
 }
 
@@ -277,12 +347,30 @@ $lyricText.on("click", "span", function (event) {
 
 // Event delegation
 $wordsBoxEl.on("click", "li", function (event) {
-  console.log($(event.target).text());
-  console.log($lyricClick.text());
-  //$lyricClick.text() = $(event.target).text();
-  $lyricClick.text($(event.target).text());
+  if ($(event.target).data("use")) {
+    $lyricClick.text($(event.target).text());
+  } else {
+    return;
+  }
 });
 
+// Get the modal
+var modal = document.getElementById("copyModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 function getRecent() {
   recentSearch = null;
   $("#recentSrchEl").text("");
