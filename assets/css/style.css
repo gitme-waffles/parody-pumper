@@ -113,6 +113,7 @@ h2 {
   border-radius: 15px;
   padding: 20px;
   line-height: 25px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .wordDiv {
     margin: 1rem 0;
@@ -229,4 +230,8 @@ h2 {
   border-radius: 15px;
   width: 400px;
   padding: 0.75rem 0.5rem;
+}
+
+li {
+  cursor: pointer;
 }
