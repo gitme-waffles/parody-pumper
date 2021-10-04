@@ -11,6 +11,10 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet" />
+        <!-- <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    /> -->
         <link rel="stylesheet" href=".\assets\css\reset.css" />
         <link rel="stylesheet" href=".\assets\css\style.css" />
     </head>
@@ -24,6 +28,14 @@
                     <span>By</span>
                     <input type="text" class="inputtext" id="artistName" placeholder="Enter Artist...." />
                     <button id="search">Search</button>
+                    <!-- Adding in the "recent Search selector" -->
+                    <div id="rctSrchContainer">
+                        <label for="recentSrchEl">Recent Searches</label>
+                        <br />
+                        <select class="customSelect" name="recentSrchEl" id="recentSrchEl">
+                            <!-- <option> content goes here -->
+                        </select>
+                    </div>
                 </form>
             </div>
         </header>
@@ -35,7 +47,6 @@
                     <p class="lyric-text"></p>
                 </div>
                 <div class="words-box">
-                    WORDS API will go here
                     <h2>Rhymes</h2>
                     <div class="wordDiv">
                         <ul id="rhymingWords"></ul>
@@ -52,7 +63,7 @@
             </div>
         </section>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src=".\assets\js\script.js"></script>
     </body>
 </html>

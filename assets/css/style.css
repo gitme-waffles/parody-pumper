@@ -11,10 +11,16 @@ body {
 }
 
 header {
-    padding: 30px;
-    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
-    height: 200px;
-    width: 100%;
+  padding: 30px;
+  background-image: linear-gradient(
+    to right top,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+  );
+  width: 100%;
 }
 
 .container h1 {
@@ -110,4 +116,15 @@ h2 {
 .changedColor {
     background-color: lightseagreen;
     color: black;
+}
+
+#rctSrchContainer {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+#recentSrchEl {
+  border-radius: 15px;
+  width: 400px;
+  padding: 0.75rem 0.5rem;
 }
