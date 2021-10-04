@@ -28,11 +28,21 @@
             </div>
         </header>
         <section class="result-container">
-            <h1 class="results-heading">Result will be displayed here...Maybe have song title/artist here too?</h1>
+            <h1 class="results-heading"></h1>
             <div class="boxes-div">
                 <div class="lyric-text-div">
                     <h2>Lyrics of :<span id="song"></span><span id="artist"></span></h2>
                     <button id="copyBtn">Copy to Clipboard</button>
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>
+                                Lyrics copied.<br />
+                                Use keys ctrl+v to paste .
+                            </p>
+                        </div>
+                    </div>
                     <p class="lyric-text"></p>
                 </div>
                 <div class="words-box">

@@ -14,7 +14,6 @@ function enterSong(event) {
     var songtoSearch = inputSong.val().trim();
     var artisttoSearch = inputArtist.val().trim();
     if (songtoSearch && artisttoSearch) {
-        //  searchSong("ACDC", "Highway to hell");
         searchSong(songtoSearch, artisttoSearch);
         addHeading(songtoSearch, artisttoSearch);
     }
@@ -66,7 +65,7 @@ function renderLyricsToScreen(lyrics) {
     inputSong.val("");
 
     console.log(lyrics, "lyrics of song");
-    // console.log(individualLyric, "individual Lyrics");
+
     var splitLyricsIntoLines = lyrics.split("\n");
 
     for (var i = 0; i < splitLyricsIntoLines.length; i++) {
@@ -103,34 +102,47 @@ function copyFunc() {
     // if its a div, iterate through the words
     // if its a break, skip it and add a new line (\n)
     // sum up the strings into the original song lyric
-    // var copyText = “”;
-    // for (var i = 0; i < $lyricText.children().length; i++) {
-    //   var $lyricLine = $lyricText.children().eq(i).children();
-    //   for (var j = 0; j < $lyricLine.length; j++) {
-    //     copyText += $lyricLine.eq(j).text();
-    //     if (j < $lyricLine.length - 1) {
-    //       copyText += ” “;
-    //     }
-    //   }
-    //   copyText += “\n”; // add a new line
+
+    // var $childDiv = $(".lyric-text").children();
+    // // var $grandchild = $(".lyric-text").find("span").text();
+    // console.log($childDiv, "child div");
+    // // console.log($grandchild, "grand child");
+    // var $childSpan = $(".lyric-text>div>span");
+    // console.log($childSpan);
+    // for (var i = 0; i < $childDiv.length; i++) {
+    //     console.log($childDiv[i]);
     // }
-    // console.log(copyText);
+    // var $lyricText = $(".lyric-text");
+    // console.log($lyricText.children().length, "lyric text");
 
-    var $childDiv = $(".lyric-text").children();
-
-    // var $grandchild = $(".lyric-text").find("span").text();
-    console.log($childDiv, "child div");
-    // console.log($grandchild, "grand child");
-    var $childSpan = $(".lyric-text>div>span");
-    console.log($childSpan);
-
-    for (var i = 0; i < $childDiv.length; i++) {
-        console.log($childDiv[i]);
-    }
     var $lyricText = $(".lyric-text");
-    console.log($lyricText.children().length, "lyric text");
-    console.log($lyricText.children().length, "lyric text");
+    var copyText = " ";
+    for (var i = 0; i < $lyricText.children().length; i++) {
+        var $lyricLine = $lyricText.children().eq(i).children();
+
+        for (var j = 0; j < $lyricLine.length; j++) {
+            copyText += $lyricLine.eq(j).text();
+            if (j < $lyricLine.length - 1) {
+                copyText += " ";
+            }
+        }
+        copyText += "\n";
+    }
+    console.log(copyText);
+    var text = copyText;
+    var $temp = $("<textarea>");
+    $("body").append($temp);
+    $temp.text(text).select();
+    document.execCommand("copy");
+    $temp.remove();
+    if (copyText !== " ") {
+        modal.style.display = "block";
+    } else {
+        console.log("Nothing to copy");
+    }
 }
+
+function messageDisplay() {}
 //fetch rhymes from wordAPI
 function getWordRhymes(searchWord) {
     var searchUrl = "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/rhymes";
@@ -254,3 +266,24 @@ $wordsBoxEl.on("click", "li", function (event) {
     //$lyricClick.text() = $(event.target).text();
     $lyricClick.text($(event.target).text());
 });
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
