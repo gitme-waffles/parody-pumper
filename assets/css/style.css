@@ -1,10 +1,3 @@
-:root {
-  --mountains: #4F6457;
-  --sky: #75B1A9;
-  --sunglow: #D9B44A;
-  --mist: #ACD0C0;
-}
-
 * {
     padding: 0%;
     margin: 0%;
@@ -19,14 +12,6 @@ body {
 
 header {
   padding: 30px;
-  background-image: linear-gradient(
-    to right top,
-    #051937,
-    #004d7a,
-    #008793,
-    #00bf72,
-    #a8eb12
-  );
   width: 100%;
   background-color: #B1a6A4;
 }
@@ -45,11 +30,6 @@ header {
   margin: 5px;
   width: 25%;
 }
-/* #songName,
-#artistName {
-  width: 500px;
-  height: 45px;
-} */
 
 span {
     font-size: 25px;
@@ -59,14 +39,14 @@ span {
 button {
   width: 100px;
   height: 45px;
-  background: #697184;
+  background: #45575c;
   color: white;
   border-radius: 10px;
   font-size: 20px;
 }
 
 button:hover {
-  background-color: #45575c;
+  background-color: #627d85;
 }
 
 .boxes-div {
@@ -122,7 +102,6 @@ h2 {
 .results-heading {
   margin: 20px;
   text-align: center;
-  /* color: ; */
 }
 
 .card {
@@ -141,7 +120,7 @@ h2 {
     overflow-y: auto;
 }
 .highLightColor {
-    background-color: yellow;
+    background-color: #45575c;
     color: black;
 }
 .changedColor {
@@ -151,16 +130,17 @@ h2 {
 #copyBtn {
     float: right;
     font-size: 15px;
-    width:150px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     /* width: fit-content; */
     padding: 5px;
     cursor: pointer;
     font-family: "Roboto Condensed", sans-serif;
-    /* margin:3px; */
+    /* margin: 3px; */
+    background-color: #45575c;
 }
 #copyBtn:hover {
-    background-color: blue;
+    background-color: #627d85;
 }
 
 .modal {
