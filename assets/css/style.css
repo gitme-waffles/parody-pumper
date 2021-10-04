@@ -1,3 +1,10 @@
+:root {
+  --mountains: #4F6457;
+  --sky: #75B1A9;
+  --sunglow: #D9B44A;
+  --mist: #ACD0C0;
+}
+
 * {
   padding: 0%;
   margin: 0%;
@@ -5,40 +12,42 @@
 }
 
 body {
-  font-family: "Gochi Hand", cursive;
-  background-color: rgb(40, 40, 40);
-  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #413F3D;
+  background-color: #F2F1EF;
 }
 
 header {
   padding: 30px;
-  background-image: linear-gradient(
-    to right top,
-    #051937,
-    #004d7a,
-    #008793,
-    #00bf72,
-    #a8eb12
-  );
   height: 200px;
   width: 100%;
+  background-color: #B1a6A4;
 }
 
 .container h1 {
   margin-bottom: 20px;
   letter-spacing: 2px;
   text-align: left;
+  display: block;
 }
 
-.inputtext {
+/* .container {
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+.inputText {
   border-radius: 10px;
   border: none;
+  padding: 20px;
+  margin: 5px;
+  width: 25%;
 }
-#songName,
+/* #songName,
 #artistName {
   width: 500px;
   height: 45px;
-}
+} */
 
 span {
   font-size: 25px;
@@ -48,19 +57,23 @@ span {
 button {
   width: 100px;
   height: 45px;
-  background: cornflowerblue;
+  background: #697184;
   color: white;
   border-radius: 10px;
   font-size: 20px;
 }
 
 button:hover {
-  background-color: turquoise;
+  background-color: #45575c;
 }
 
 .boxes-div {
   font-family: "Roboto Condensed", sans-serif;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
 }
 
 .lyric-text {
@@ -70,36 +83,47 @@ button:hover {
   margin-top: 20px;
 }
 
-.lyric-text-div {
-  border: 2px white solid;
-  flex: 1;
-  margin-right: 20px;
-  height: 90%;
-}
-
 .lyric-text span:hover {
-  background-color: cyan;
+  background-color: #45575c;
 }
 
-/* .words-box {
-    
-} */
-
-.words-box,
-.lyric-text-div {
-  border: 2px white solid;
-  border-radius: 15px;
-  flex: 1;
-  padding: 20px;
-  line-height: 25px;
-}
 #song,
 #artist {
   font-size: 25px;
   font-weight: bold;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-style: italic;
 }
+
 h2 {
   font-size: 25px;
+}
+
+.search-btn-div {
+  padding-top: 10px;
+  margin: 10px;
+}
+
+.results-heading {
+  margin: 20px;
+  text-align: center;
+  /* color: ; */
+}
+
+.card {
+  padding: 10px;
+  flex: 0 1 40%;
+  color: #F2F1EF;
+  background-color: #697184;
+  border: 2px #697184 solid;
+  border-radius: 15px;
+  padding: 20px;
+  line-height: 25px;
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    flex-direction: column;
+    min-width: 350px;
+  }
 }
