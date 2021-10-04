@@ -4,16 +4,27 @@ var resultArea = $(".result-container");
 var inputSong = $("#songName");
 var inputArtist = $("#artistName");
 var $lyricText = $(".lyric-text");
+var $wordsBoxEl = $(".words-box");
+var $lyricClick, songtoSearch, artisttoSearch;
+var recentSearch = [];
 
 searchBtn.on("click", enterSong);
 function enterSong(event) {
   event.preventDefault();
-  var songtoSearch = inputSong.val().trim();
-  var artisttoSearch = inputArtist.val().trim();
+  songtoSearch = inputSong.val().trim();
+  artisttoSearch = inputArtist.val().trim();
   if (songtoSearch && artisttoSearch) {
     //  searchSong("ACDC", "Highway to hell");
     searchSong(songtoSearch, artisttoSearch);
     addHeading(songtoSearch, artisttoSearch);
+
+    if (recentSearch !== null) {
+      recentSearch.push({ artist: artisttoSearch, song: songtoSearch });
+    } else {
+      recentSearch = [{ artist: artisttoSearch, song: songtoSearch }];
+    }
+    saveRecent();
+    getRecent();
   }
 }
 
@@ -50,12 +61,10 @@ function searchSong(song, artist) {
   });
 
   mockedResponse.then(function (data) {
-    console.log(data, "data");
-
+    //console.log(data, "data");
     var lyrics = data.lyrics.split("\r\n")[1];
-    console.log(lyrics);
+    //console.log(lyrics);
     renderLyricsToScreen(lyrics);
-    convertText();
   });
 }
 
@@ -64,7 +73,7 @@ function renderLyricsToScreen(lyrics) {
   inputArtist.val("");
   inputSong.val("");
 
-  console.log(lyrics, "lyrics of song");
+  //console.log(lyrics, "lyrics of song");
   // console.log(individualLyric, "individual Lyrics");
   var splitLyricsIntoLines = lyrics.split("\n");
 
@@ -87,8 +96,7 @@ function renderLyricsToScreen(lyrics) {
       $lyricText.append(breakElem);
     }
   }
-
-  $(".lyric-text").append(lyrics);
+  //Add song and Artist to recently searched - local storage.
 }
 
 //function to dispaly song name and artist name as heading
@@ -99,16 +107,167 @@ function addHeading(song, artist) {
   $("#artist").append(artist.toUpperCase());
 }
 
-function convertText() {
-  //   $(".lyric-text").each(function () {
-  //     var lyricEl = $(this);
-  //     var x = lyricEl.text().replace(/(\w+)/gi, "<span>$1</span>");
-  //     $(".lyric-text").text(""); // clear the text
-  //     $(".lyric-text").append(x); // add the clickable text
-  //   });
+//fetch rhymes from wordAPI
+function getWordRhymes(searchWord) {
+  var searchUrl =
+    "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/rhymes";
+  fetch(searchUrl, {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+      "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      return response.json(response);
+    })
+    .then((data) => {
+      console.log(data);
+      if (!data.rhymes.all) {
+        throw new Error("No Rhymes Found");
+      }
+      printRhyming(data.rhymes.all);
+    })
+    .catch((err) => {
+      console.log(err);
+      printRhyming(["No Rhymes Found"]);
+    });
+}
+//fetch synonyms from wordAPI
+function getWordSynonyms(searchWord) {
+  var searchUrl =
+    "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/synonyms";
+  fetch(searchUrl, {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+      "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      return response.json(response);
+    })
+    .then((data) => {
+      console.log(data);
+      if (!data.synonyms) {
+        throw new Error("No synonyms Found");
+      }
+      printSynonyms(data.synonyms);
+    })
+    .catch((err) => {
+      console.log(err);
+      printSynonyms(["No synonyms Found"]);
+    });
+}
+//fetch antonyms from wordAPI
+function getWordAntonyms(searchWord) {
+  var searchUrl =
+    "https://wordsapiv1.p.rapidapi.com/words/" + searchWord + "/antonyms";
+  fetch(searchUrl, {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+      "x-rapidapi-key": "af8db37aacmsha96cf214afa8261p1acb2bjsn4c1925c3f5c2",
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      return response.json(response);
+    })
+    .then((data) => {
+      console.log(data);
+      if (!data.antonyms || data.antonyms.length === 0) {
+        throw new Error("No antonyms Found");
+      }
+      printAntonyms(data.antonyms);
+    })
+    .catch((err) => {
+      console.log(err);
+      printAntonyms(["No antonyms Found"]);
+    });
+}
+// Print rhymes to screen
+function printRhyming(wordArr) {
+  $("#rhymingWords").text(""); //clear any children
+  for (var i = 0; i < wordArr.length; i++) {
+    rhymeEl = $("<li>").text(wordArr[i]);
+    $("#rhymingWords").append(rhymeEl);
+  }
+}
+// Print Synonyms to screen
+function printSynonyms(wordArr) {
+  $("#synonyms").text(""); //clear any children
+  for (var i = 0; i < wordArr.length; i++) {
+    rhymeEl = $("<li>").text(wordArr[i]);
+    $("#synonyms").append(rhymeEl);
+  }
+}
+//Print Antonyms to screen
+function printAntonyms(wordArr) {
+  $("#antonyms").text(""); //clear any children
+  for (var i = 0; i < wordArr.length; i++) {
+    rhymeEl = $("<li>").text(wordArr[i]);
+    $("#antonyms").append(rhymeEl);
+  }
 }
 
-$(".lyric-text").on("click", "span", function (event) {
-  console.log($(event.target).text());
-  // click on text function goes here
+// event delegation - click on lyric word.
+$lyricText.on("click", "span", function (event) {
+  if ($lyricClick) {
+    $lyricClick.removeClass("highLightColor");
+    $lyricClick.addClass("changedColor");
+  }
+  $lyricClick = $(event.target);
+  $lyricClick.addClass("highLightColor");
+  getWordRhymes($lyricClick.text());
+  getWordSynonyms($lyricClick.text());
+  getWordAntonyms($lyricClick.text());
 });
+
+// Event delegation
+$wordsBoxEl.on("click", "li", function (event) {
+  console.log($(event.target).text());
+  console.log($lyricClick.text());
+  //$lyricClick.text() = $(event.target).text();
+  $lyricClick.text($(event.target).text());
+});
+
+function getRecent() {
+  recentSearch = null;
+  $("#recentSrchEl").text("");
+  $("#recentSrchEl").append($("<option>").text("Select Recent Searches"));
+  $("#recentSrchEl").prop("disabled", true);
+
+  recentSearch = JSON.parse(localStorage.getItem("searches"));
+  if (recentSearch === null) {
+    return;
+  }
+  for (var i = 0; i < recentSearch.length; i++) {
+    var $optionEl = $("<option>").text(
+      recentSearch[i].song + " - " + recentSearch[i].artist
+    );
+    $("#recentSrchEl").append($optionEl);
+  }
+  $("#recentSrchEl").prop("disabled", false);
+}
+
+function saveRecent() {
+  localStorage.setItem("searches", JSON.stringify(recentSearch));
+}
+
+function init() {
+  getRecent();
+}
+
+// search here for a chnage in the recent search list
+$("#recentSrchEl").on("change", function (event) {
+  songtoSearch = recentSearch[event.target.options.selectedIndex - 1].song;
+  artisttoSearch = recentSearch[event.target.options.selectedIndex - 1].artist;
+  searchSong(songtoSearch, artisttoSearch);
+  addHeading(songtoSearch, artisttoSearch);
+  $("#recentSrchEl").get(0).selectedIndex = 0;
+});
+
+init(); //Initialise

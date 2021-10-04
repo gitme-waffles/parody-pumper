@@ -19,7 +19,14 @@ body {
 
 header {
   padding: 30px;
-  height: 200px;
+  background-image: linear-gradient(
+    to right top,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+  );
   width: 100%;
   background-color: #B1a6A4;
 }
@@ -87,6 +94,17 @@ button:hover {
   background-color: #45575c;
 }
 
+.words-box,
+.lyric-text-div {
+  border: 2px white solid;
+  border-radius: 15px;
+  flex: 1;
+  padding: 20px;
+  line-height: 25px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
 #song,
 #artist {
   font-size: 25px;
@@ -120,10 +138,59 @@ h2 {
   padding: 20px;
   line-height: 25px;
 }
+.wordDiv {
+  margin: 1rem 0;
+  max-height: 33vh;
+  overflow-y: auto;
+}
+.highLightColor {
+  background-color: yellow;
+  color: black;
+}
+.changedColor {
+  background-color: lightseagreen;
+  color: black;
+}
 
+#rctSrchContainer {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+#recentSrchEl {
+  border-radius: 15px;
+  width: 400px;
+  padding: 0.75rem 0.5rem;
+}
 @media screen and (max-width: 700px) {
   .card {
     flex-direction: column;
     min-width: 350px;
   }
+}
+
+
+.wordDiv {
+  margin: 1rem 0;
+  max-height: 33vh;
+  overflow-y: auto;
+}
+.highLightColor {
+  background-color: yellow;
+  color: black;
+}
+.changedColor {
+  background-color: lightseagreen;
+  color: black;
+}
+
+#rctSrchContainer {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+#recentSrchEl {
+  border-radius: 15px;
+  width: 400px;
+  padding: 0.75rem 0.5rem;
 }
