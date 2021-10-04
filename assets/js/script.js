@@ -107,6 +107,8 @@ function addHeading(song, artist) {
     $("#song").append(song.toUpperCase());
     $("#artist").append(artist.toUpperCase());
 }
+
+//function to copy lyrics to clipboard
 function copyFunc() {
     // get the lyric text element
     // iterate through the childrend
@@ -140,10 +142,13 @@ function copyFunc() {
         copyText += "\n";
     }
     console.log(copyText);
+
     var text = copyText;
+
     var $temp = $("<textarea>");
     $("body").append($temp);
     $temp.text(text).select();
+
     document.execCommand("copy");
     $temp.remove();
     if (copyText !== " ") {
@@ -279,10 +284,7 @@ $wordsBoxEl.on("click", "li", function (event) {
 });
 
 // Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var modal = document.getElementById("copyModal");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
