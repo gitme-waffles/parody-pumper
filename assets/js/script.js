@@ -17,6 +17,18 @@ function enterSong(event) {
   }
 }
 
+    function modalError(error) {
+
+        $('#modal').modal();
+        console.log({error})
+
+    }
+
+    function renderModal(error) {
+  
+      
+      }
+
 function searchSong(song, artist) {
   var songUrl =
     "https://private-anon-e83b93ca5b-lyricsovh.apiary-proxy.com/v1/" +
@@ -50,12 +62,17 @@ function searchSong(song, artist) {
   });
 
   mockedResponse.then(function (data) {
+      console.log(data);
+      // throw console.error('thrown error');
     console.log(data, "data");
 
     var lyrics = data.lyrics.split("\r\n")[1];
     console.log(lyrics);
     renderLyricsToScreen(lyrics);
     convertText();
+  }).catch(function() {
+      console.log(Error);
+      modalError(Error);
   });
 }
 
