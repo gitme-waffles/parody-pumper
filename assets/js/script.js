@@ -27,7 +27,45 @@ function enterSong(event) {
     }
     saveRecent();
     getRecent();
+  } else {
+    renderModal()
   }
+}
+
+function modalError(eMessage) {
+  // clears all previous info
+  $('#modalField').html('')
+  console.log(eMessage)
+  // create El
+  var errorEl =  $("<p>")
+  var songVal = inputSong.val()
+  var artistVal = inputArtist.val()
+
+  // set innerHTML with a value =>> error
+  if (eMessage == 404) {
+    errorEl.html(`Error ${eMessage} <br /> Could not find '${songVal}' by '${artistVal}'`)
+  } else {
+    errorEl.html(`Error ${eMessage}`)
+  }
+
+  $('#modalField').append(errorEl)
+
+  // run modal remove $(".hide")
+  $('#modal').removeClass("hide")
+  $('#modal').modal({
+  fadeDuration: 100
+  });
+}
+
+function renderModal() {
+  $('#modalField').html('')
+  var errorEl =  $("<p>")
+  errorEl.html(`Song and Artist is required`)
+  $('#modalField').append(errorEl)
+  $('#modal').removeClass("hide")
+  $('#modal').modal({
+  fadeDuration: 100
+  });
 }
 
 function searchSong(song, artist) {
@@ -39,21 +77,24 @@ function searchSong(song, artist) {
 
   // DO NOT REMOVE!
   // fetch(songUrl)
-  //     .then(function (response) {
-  //         console.log(response);
-  //         return response.json();
-  //     })
-  //     .then(function (data) {
-  //         console.log(data, "data");
+  //   .then(function (response) {
+  //       console.log(response);
+  //       if (response.status != 200) {
+  //         modalError(response.status)
+  //       }
+  //       return response.json();
+  //   })
+  //   .then(function (data) {
+  //     console.log(data, "data");
 
-  //         var lyrics = data.lyrics.split("\r\n")[1];
-  //         var individualLyric = lyrics.split("\n");
-  //         getLyrics(lyrics, individualLyric);
-  //         convertText();
-  //     })
-  //     .catch(function (error) {
-  //         console.log(error);
-  //     });
+  //     var lyrics = data.lyrics.split("\r\n")[1];
+  //     //console.log(lyrics);
+  //     renderLyricsToScreen(lyrics);
+  //     convertText();
+  //   }).catch(function(e) {
+  //     console.log(e);
+  //     // modalError(e.message);
+  // });
 
   var mockedResponse = new Promise(function (res) {
     res({
@@ -63,10 +104,17 @@ function searchSong(song, artist) {
   });
 
   mockedResponse.then(function (data) {
-    //console.log(data, "data");
+      console.log(data);
+      throw new Error();
+    console.log(data, "data");
+
     var lyrics = data.lyrics.split("\r\n")[1];
     //console.log(lyrics);
     renderLyricsToScreen(lyrics);
+    convertText();
+  }).catch(function(e) {
+      console.log(e);
+      modalError(e.message);
   });
 }
 
@@ -241,6 +289,7 @@ function getWordAntonyms(searchWord) {
       printAntonyms(["No antonyms Found"], false);
     });
 }
+
 // Print rhymes to screen
 function printRhyming(wordArr, useMe) {
   $("#rhymingWords").text(""); //clear any children
