@@ -6,9 +6,9 @@
 }
 
 * {
-  padding: 0%;
-  margin: 0%;
-  box-sizing: border-box;
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
 }
 
 body {
@@ -38,11 +38,6 @@ header {
   display: block;
 }
 
-/* .container {
-  display: flex;
-  flex-wrap: wrap;
-} */
-
 .inputText {
   border-radius: 10px;
   border: none;
@@ -57,8 +52,8 @@ header {
 } */
 
 span {
-  font-size: 25px;
-  margin: 0 10px;
+    font-size: 25px;
+    margin: 0 10px;
 }
 
 button {
@@ -84,10 +79,10 @@ button:hover {
 }
 
 .lyric-text {
-  white-space: pre;
-  cursor: pointer;
-  padding-top: 3px;
-  margin-top: 20px;
+    white-space: pre;
+    cursor: pointer;
+    padding-top: 3px;
+    margin-top: 20px;
 }
 
 .lyric-text span:hover {
@@ -96,13 +91,15 @@ button:hover {
 
 .words-box,
 .lyric-text-div {
-  border: 2px white solid;
-  border-radius: 15px;
-  flex: 1;
-  padding: 20px;
-  line-height: 25px;
-  max-height: 80vh;
-  overflow-y: auto;
+    
+    border: 2px white solid;
+    border-radius: 10px;
+    flex: 1;
+    padding: 20px;
+    line-height: 25px;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin-top: 10px;
 }
 
 #song,
@@ -114,7 +111,7 @@ button:hover {
 }
 
 h2 {
-  font-size: 25px;
+    font-size: 25px;
 }
 
 .search-btn-div {
@@ -139,19 +136,78 @@ h2 {
   line-height: 25px;
 }
 .wordDiv {
-  margin: 1rem 0;
-  max-height: 33vh;
-  overflow-y: auto;
+    margin: 1rem 0;
+    max-height: 33vh;
+    overflow-y: auto;
 }
 .highLightColor {
-  background-color: yellow;
-  color: black;
+    background-color: yellow;
+    color: black;
 }
 .changedColor {
-  background-color: lightseagreen;
-  color: black;
+    background-color: lightseagreen;
+    color: black;
+}
+#copyBtn {
+    float: right;
+    font-size: 15px;
+    width:150px;
+    height:50px;
+    /* width: fit-content; */
+    padding: 5px;
+    cursor: pointer;
+    font-family: "Roboto Condensed", sans-serif;
+    /* margin:3px; */
+}
+#copyBtn:hover {
+    background-color: blue;
 }
 
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    position: absolute;
+    float: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; 
+    height: 200px;
+    border-radius: 20px;
+    background-color: rgba(32, 6, 163, 0.4); 
+    
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    background-color: rgb(4, 4, 87);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    height: 50%;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 #rctSrchContainer {
   display: block;
   margin: 0.5rem 0;
