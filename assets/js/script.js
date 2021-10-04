@@ -300,23 +300,14 @@ $lyricText.on("click", "span", function (event) {
 // Event delegation
 $wordsBoxEl.on("click", "li", function (event) {
   if ($(event.target).data("use")) {
-    if (changedLyric === null) {
-      changedLyric[0] = {
-        target: $lyricClick,
-        origional: $lyricClick.text(),
-        new: $(event.target).text(),
-      };
-    } else {
-      changedLyric.push({
-        target: $lyricClick,
-        origional: $lyricClick.text(),
-        new: $(event.target).text(),
-      });
-    }
+    changedLyric.push({
+      target: $lyricClick,
+      origional: $lyricClick.text(),
+      new: $(event.target).text(),
+    });
+
     $lyricClick.text($(event.target).text());
     console.log(changedLyric);
-  } else {
-    return;
   }
 });
 
