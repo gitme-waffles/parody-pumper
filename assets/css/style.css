@@ -20,7 +20,6 @@ header {
     #00bf72,
     #a8eb12
   );
-  height: 200px;
   width: 100%;
 }
 
@@ -92,6 +91,8 @@ button:hover {
   flex: 1;
   padding: 20px;
   line-height: 25px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 #song,
 #artist {
@@ -102,4 +103,28 @@ button:hover {
 }
 h2 {
   font-size: 25px;
+}
+.wordDiv {
+  margin: 1rem 0;
+  max-height: 33vh;
+  overflow-y: auto;
+}
+.highLightColor {
+  background-color: yellow;
+  color: black;
+}
+.changedColor {
+  background-color: lightseagreen;
+  color: black;
+}
+
+#rctSrchContainer {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+#recentSrchEl {
+  border-radius: 15px;
+  width: 400px;
+  padding: 0.75rem 0.5rem;
 }
