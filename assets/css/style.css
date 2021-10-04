@@ -128,3 +128,26 @@ h2 {
   width: 400px;
   padding: 0.75rem 0.5rem;
 }
+
+/* modal */
+#modal {
+  background-color: rgb(40, 40, 40);
+  color: white;
+  height: 220px;
+}
+
+#modalField {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal p {
+  margin: 0;
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}

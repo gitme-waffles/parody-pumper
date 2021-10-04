@@ -28,17 +28,33 @@ function enterSong(event) {
   }
 }
 
-    function modalError(error) {
+function modalError(error) {
+  // create El
+  $('#modalField').html('')
+  console.log(error)
+  var errorEl =  $("<p>")
+      
+  // set innerHTML with a value =>> error
+  if (error == 404) {
+    errorEl.html(`Error ${error} <br /> Could not find `)
 
-        $('#modal').modal();
-        console.log({error})
+  } else {
+    errorEl.html(`Error ${error}`)
+  }
 
-    }
+  $('#modalField').append(errorEl)
+
+  // run modal remove $(".hide")
+  $('#modal').removeClass("hide")
+  $('#modal').modal({
+  fadeDuration: 100
+  });
+}
 
     function renderModal(error) {
   
       
-      }
+    }
 
 function searchSong(song, artist) {
   var songUrl =
@@ -74,7 +90,7 @@ function searchSong(song, artist) {
 
   mockedResponse.then(function (data) {
       console.log(data);
-      // throw console.error('thrown error');
+      throw console.error('thrown error');
     console.log(data, "data");
 
     var lyrics = data.lyrics.split("\r\n")[1];
@@ -207,6 +223,7 @@ function getWordAntonyms(searchWord) {
       printAntonyms(["No antonyms Found"]);
     });
 }
+
 // Print rhymes to screen
 function printRhyming(wordArr) {
   $("#rhymingWords").text(""); //clear any children
