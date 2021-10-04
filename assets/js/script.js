@@ -7,15 +7,26 @@ var $lyricText = $(".lyric-text");
 var $wordsBoxEl = $(".words-box");
 var $lyricClick;
 var $copyToclip = $("#copyBtn");
+var $lyricClick, songtoSearch, artisttoSearch;
+var recentSearch = [];
+
 searchBtn.on("click", enterSong);
 $copyToclip.on("click", copyFunc);
 function enterSong(event) {
     event.preventDefault();
-    var songtoSearch = inputSong.val().trim();
-    var artisttoSearch = inputArtist.val().trim();
+    songtoSearch = inputSong.val().trim();
+    artisttoSearch = inputArtist.val().trim();
     if (songtoSearch && artisttoSearch) {
         searchSong(songtoSearch, artisttoSearch);
         addHeading(songtoSearch, artisttoSearch);
+
+        if (recentSearch !== null) {
+            recentSearch.push({ artist: artisttoSearch, song: songtoSearch });
+        } else {
+            recentSearch = [{ artist: artisttoSearch, song: songtoSearch }];
+        }
+        saveRecent();
+        getRecent();
     }
 }
 
@@ -51,10 +62,9 @@ function searchSong(song, artist) {
     });
 
     mockedResponse.then(function (data) {
-        console.log(data, "data");
-
+        //console.log(data, "data");
         var lyrics = data.lyrics.split("\r\n")[1];
-        console.log(lyrics);
+        //console.log(lyrics);
         renderLyricsToScreen(lyrics);
     });
 }
@@ -64,8 +74,8 @@ function renderLyricsToScreen(lyrics) {
     inputArtist.val("");
     inputSong.val("");
 
-    console.log(lyrics, "lyrics of song");
-
+    //console.log(lyrics, "lyrics of song");
+    // console.log(individualLyric, "individual Lyrics");
     var splitLyricsIntoLines = lyrics.split("\n");
 
     for (var i = 0; i < splitLyricsIntoLines.length; i++) {
@@ -87,6 +97,7 @@ function renderLyricsToScreen(lyrics) {
             $lyricText.append(breakElem);
         }
     }
+    //Add song and Artist to recently searched - local storage.
 }
 
 //function to display song name and artist name as heading
@@ -287,3 +298,38 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 };
+function getRecent() {
+    recentSearch = null;
+    $("#recentSrchEl").text("");
+    $("#recentSrchEl").append($("<option>").text("Select Recent Searches"));
+    $("#recentSrchEl").prop("disabled", true);
+
+    recentSearch = JSON.parse(localStorage.getItem("searches"));
+    if (recentSearch === null) {
+        return;
+    }
+    for (var i = 0; i < recentSearch.length; i++) {
+        var $optionEl = $("<option>").text(recentSearch[i].song + " - " + recentSearch[i].artist);
+        $("#recentSrchEl").append($optionEl);
+    }
+    $("#recentSrchEl").prop("disabled", false);
+}
+
+function saveRecent() {
+    localStorage.setItem("searches", JSON.stringify(recentSearch));
+}
+
+function init() {
+    getRecent();
+}
+
+// search here for a chnage in the recent search list
+$("#recentSrchEl").on("change", function (event) {
+    songtoSearch = recentSearch[event.target.options.selectedIndex - 1].song;
+    artisttoSearch = recentSearch[event.target.options.selectedIndex - 1].artist;
+    searchSong(songtoSearch, artisttoSearch);
+    addHeading(songtoSearch, artisttoSearch);
+    $("#recentSrchEl").get(0).selectedIndex = 0;
+});
+
+init(); //Initialise
