@@ -73,38 +73,6 @@ function renderModal() {
 }
 
 function searchSong(song, artist) {
-<<<<<<< HEAD
-    var songUrl =
-        "https://private-anon-e83b93ca5b-lyricsovh.apiary-proxy.com/v1/" +
-        encodeURIComponent(artist) +
-        "/" +
-        encodeURIComponent(song);
-
-    // DO NOT REMOVE!
-    // fetch(songUrl)
-    //   .then(function (response) {
-    //       console.log(response);
-    //       if (response.status != 200) {
-    //         modalError(response.status)
-    //       }
-    //       return response.json();
-    //   })
-    //   .then(function (data) {
-    //     console.log(data, "data");
-
-    //     var lyrics = data.lyrics.split("\r\n")[1];
-    //     //console.log(lyrics);
-    //     renderLyricsToScreen(lyrics);
-    //   }).catch(function(e) {
-    //     console.log(e);
-    //     // modalError(e.message);
-    // });
-
-    var mockedResponse = new Promise(function (res) {
-        res({
-            lyrics: "Paroles de la chanson Adventure Of A Lifetime par Coldplay\r\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nWe are legends\nEvery day\nThat's what she told him!\n\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\nWe are diamonds\n\nI feel my heart beating\nI feel my heart beneath my skin\nI feel my heart beating\n\n\nOhhh, you make me feel\nLike I'm alive again\nAlive again\nOhhh, you make me feel\nLike I'm alive again\n\nSaid I can't go on, not in this way\nI'm a dream, I die by light of day\nGonna hold up half the sky and say\nOhhh, we are omen\n\nI feel my heart beating\nI feel my heart beneath my skin\nOhhh, I can feel my heart beating\nCause you make me feel\nLike I'm alive again\nAlive again...\n\nOhhh, you make me feel\nLike I'm alive again\n\nTurn your magic on, to me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\n\nWe are diamonds taking shape!\nWe are diamonds taking shape!\n\nIf we've only got this life\nThen this adventure, more than I\nAnd if we've only got this life\nYou'll get me through alive\nAnd if we've only got this life\nThen this adventure, more than I\nWanna share with you\nWith you, with you\n\nI said, oh, say oh\n\nWoo hoo, woo hoo...",
-        });
-=======
   var songUrl =
     "https://private-anon-e83b93ca5b-lyricsovh.apiary-proxy.com/v1/" +
     encodeURIComponent(artist) +
@@ -135,41 +103,8 @@ function searchSong(song, artist) {
     res({
       lyrics:
         "Paroles de la chanson Adventure Of A Lifetime par Coldplay\r\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nWe are legends\nEvery day\nThat's what she told him!\n\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\nWe are diamonds\n\nI feel my heart beating\nI feel my heart beneath my skin\nI feel my heart beating\n\n\nOhhh, you make me feel\nLike I'm alive again\nAlive again\nOhhh, you make me feel\nLike I'm alive again\n\nSaid I can't go on, not in this way\nI'm a dream, I die by light of day\nGonna hold up half the sky and say\nOhhh, we are omen\n\nI feel my heart beating\nI feel my heart beneath my skin\nOhhh, I can feel my heart beating\nCause you make me feel\nLike I'm alive again\nAlive again...\n\nOhhh, you make me feel\nLike I'm alive again\n\nTurn your magic on, to me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\n\nWe are diamonds taking shape!\nWe are diamonds taking shape!\n\nIf we've only got this life\nThen this adventure, more than I\nAnd if we've only got this life\nYou'll get me through alive\nAnd if we've only got this life\nThen this adventure, more than I\nWanna share with you\nWith you, with you\n\nI said, oh, say oh\n\nWoo hoo, woo hoo...",
->>>>>>> 63962700668c6a43dfe795d297203e219b547c84
     });
 
-<<<<<<< HEAD
-    mockedResponse
-        .then(function (data) {
-            console.log(data);
-            //throw new Error(); removed for functionality
-            console.log(data, "data");
-
-            var lyrics = data.lyrics.split("\r\n")[1];
-            //console.log(lyrics);
-            renderLyricsToScreen(lyrics);
-        })
-        .catch(function (e) {
-            console.log(e);
-            modalError(e.message);
-        });
-
-    mockedResponse
-        .then(function (data) {
-            console.log(data);
-            //throw new Error(); removed for functionality
-            console.log(data, "data");
-
-            var lyrics = data.lyrics.split("\r\n")[1];
-            //console.log(lyrics);
-            renderLyricsToScreen(lyrics);
-            convertText();
-        })
-        .catch(function (e) {
-            console.log(e);
-            modalError(e.message);
-        });
-=======
       var lyrics = data.lyrics.split("\r\n")[1];
       //console.log(lyrics);
       renderLyricsToScreen(lyrics);
@@ -178,38 +113,10 @@ function searchSong(song, artist) {
       console.log(e);
       modalError(e.message);
     });
->>>>>>> 63962700668c6a43dfe795d297203e219b547c84
 }
 
 //function to display song in container
 function renderLyricsToScreen(lyrics) {
-<<<<<<< HEAD
-    inputArtist.val("");
-    inputSong.val("");
-
-    //console.log(lyrics, "lyrics of song");
-    // console.log(individualLyric, "individual Lyrics");
-    var splitLyricsIntoLines = lyrics.split("\n");
-
-    for (var i = 0; i < splitLyricsIntoLines.length; i++) {
-        // "" // we add a br
-        // "Text" // we wrap it in a div
-        if (lyrics[i] !== "") {
-            var paraContainer = $("<div>");
-            var words = splitLyricsIntoLines[i].split(" ");
-            for (let j = 0; j < words.length; j++) {
-                var span = $("<span>");
-                span.text(words[j]);
-
-                span.attr("word", words[j]);
-                paraContainer.append(span);
-                $lyricText.append(paraContainer);
-            }
-        } else {
-            var breakElem = $("<br>");
-            $lyricText.append(breakElem);
-        }
-=======
   inputArtist.val("");
   inputSong.val("");
   $lyricText.text("");
@@ -234,7 +141,6 @@ function renderLyricsToScreen(lyrics) {
     } else {
       var breakElem = $("<br>");
       $lyricText.append(breakElem);
->>>>>>> 63962700668c6a43dfe795d297203e219b547c84
     }
     //Add song and Artist to recently searched - local storage.
 }
