@@ -185,12 +185,14 @@ button:hover {
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
-  height: 50%;
+  width: 90%;
+  height: 60%;
   border-radius: 10px;
   color: white;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
+  line-height: normal;
+  
 }
 
 /* The Close Button */
