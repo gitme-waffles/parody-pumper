@@ -5,11 +5,13 @@ var inputSong = $("#songName");
 var inputArtist = $("#artistName");
 var $lyricText = $(".lyric-text");
 var $wordsBoxEl = $(".words-box");
+var $toggleHlt = $("#toggleHlt");
 var $lyricClick;
 var $copyToclip = $("#copyBtn");
 var $lyricClick, songtoSearch, artisttoSearch;
 var recentSearch = [];
 var changedLyric = [];
+var toggleHltTxt = false;
 
 searchBtn.on("click", enterSong);
 $copyToclip.on("click", copyFunc);
@@ -288,10 +290,13 @@ function printAntonyms(wordArr, useMe) {
 $lyricText.on("click", "span", function (event) {
   if ($lyricClick) {
     $lyricClick.removeClass("highLightColor");
-    $lyricClick.addClass("changedColor");
+    if (toggleHltTxt) {
+      //$lyricClick.addClass("changedColor");
+      console.log("Me");
+    }
   }
   $lyricClick = $(event.target);
-  $lyricClick.addClass("highLightColor");
+  //$lyricClick.addClass("highLightColor");
   getWordRhymes($lyricClick.text());
   getWordSynonyms($lyricClick.text());
   getWordAntonyms($lyricClick.text());
@@ -305,9 +310,8 @@ $wordsBoxEl.on("click", "li", function (event) {
       origional: $lyricClick.text(),
       new: $(event.target).text(),
     });
-
     $lyricClick.text($(event.target).text());
-    console.log(changedLyric);
+    $lyricClick.addClass("changedColor");
   }
 });
 
@@ -359,6 +363,19 @@ $("#recentSrchEl").on("change", function (event) {
   searchSong(songtoSearch, artisttoSearch);
   addHeading(songtoSearch, artisttoSearch);
   $("#recentSrchEl").get(0).selectedIndex = 0;
+});
+
+$toggleHlt.on("change", function (event) {
+  toggleHltTxt = event.target.checked;
+  if (toggleHltTxt) {
+    for (var i = 0; i < changedLyric.length; i++) {
+      changedLyric[i].target.addClass("changedColor");
+    }
+  } else {
+    for (var i = 0; i < changedLyric.length; i++) {
+      changedLyric[i].target.removeClass("changedColor");
+    }
+  }
 });
 
 init(); //Initialise

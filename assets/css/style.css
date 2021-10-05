@@ -1,19 +1,19 @@
 * {
-    padding: 0%;
-    margin: 0%;
-    box-sizing: border-box;
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: #413F3D;
-  background-color: #F2F1EF;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #413f3d;
+  background-color: #f2f1ef;
 }
 
 header {
   padding: 30px;
   width: 100%;
-  background-color: #B1a6A4;
+  background-color: #b1a6a4;
 }
 
 .container h1 {
@@ -32,8 +32,8 @@ header {
 }
 
 span {
-    font-size: 25px;
-    margin: 0 10px;
+  font-size: 25px;
+  margin: 0 10px;
 }
 
 button {
@@ -59,10 +59,10 @@ button:hover {
 }
 
 .lyric-text {
-    white-space: pre;
-    cursor: pointer;
-    padding-top: 3px;
-    margin-top: 20px;
+  white-space: pre;
+  cursor: pointer;
+  padding-top: 3px;
+  margin-top: 20px;
 }
 
 .lyric-text span:hover {
@@ -71,27 +71,26 @@ button:hover {
 
 .words-box,
 .lyric-text-div {
-    
-    border: 2px white solid;
-    border-radius: 10px;
-    flex: 1;
-    padding: 20px;
-    line-height: 25px;
-    max-height: 80vh;
-    overflow-y: auto;
-    margin-top: 10px;
+  border: 2px white solid;
+  border-radius: 10px;
+  flex: 1;
+  padding: 20px;
+  line-height: 25px;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin-top: 10px;
 }
 
 #song,
 #artist {
   font-size: 25px;
   font-weight: bold;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-style: italic;
 }
 
 h2 {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 .search-btn-div {
@@ -107,87 +106,82 @@ h2 {
 .card {
   padding: 10px;
   flex: 0 1 40%;
-  color: #F2F1EF;
+  color: #f2f1ef;
   background-color: #697184;
   border: 2px #697184 solid;
   border-radius: 15px;
   padding: 20px;
   line-height: 25px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 .wordDiv {
-    margin: 1rem 0;
-    max-height: 33vh;
-    overflow-y: auto;
+  margin: 1rem 0;
+  max-height: 33vh;
+  overflow-y: auto;
 }
 .highLightColor {
-    background-color: #45575c;
-    color: black;
-}
-.changedColor {
-    background-color: lightseagreen;
-    color: black;
+  background-color: #45575c;
+  color: black;
 }
 #copyBtn {
-    float: right;
-    font-size: 15px;
-    width: 100px;
-    height: 50px;
-    /* width: fit-content; */
-    padding: 5px;
-    cursor: pointer;
-    font-family: "Roboto Condensed", sans-serif;
-    /* margin: 3px; */
-    background-color: #45575c;
+  float: right;
+  font-size: 15px;
+  width: 100px;
+  height: 50px;
+  /* width: fit-content; */
+  padding: 5px;
+  cursor: pointer;
+  font-family: "Roboto Condensed", sans-serif;
+  /* margin: 3px; */
+  background-color: #45575c;
 }
 #copyBtn:hover {
-    background-color: #627d85;
+  background-color: #627d85;
 }
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    position: absolute;
-    float: left;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px; 
-    height: 200px;
-    border-radius: 20px;
-    background-color: rgba(32, 6, 163, 0.4); 
-    
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  border-radius: 20px;
+  background-color: rgba(32, 6, 163, 0.4);
 }
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
-    background-color: rgb(4, 4, 87);
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; 
-    height: 50%;
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
+  background-color: #fefefe;
+  background-color: rgb(4, 4, 87);
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height: 50%;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 /* The Close Button */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 #rctSrchContainer {
   display: block;
@@ -205,7 +199,6 @@ h2 {
     min-width: 350px;
   }
 }
-
 
 .wordDiv {
   margin: 1rem 0;
@@ -234,4 +227,43 @@ h2 {
 
 li {
   cursor: pointer;
+}
+
+.slideToggle {
+  --toggleWidth: 60px;
+  --toggleHeight: calc(var(--toggleWidth) / 2);
+  --toggleRadius: calc(var(--toggleHeight) / 2);
+  display: inline-block;
+  cursor: pointer;
+}
+.slideToggle_input {
+  display: none;
+}
+.slideToggle_fill {
+  position: relative;
+  margin: 0 auto;
+  width: var(--toggleWidth);
+  height: var(--toggleHeight);
+  border-radius: var(--toggleRadius);
+  background: #dddddd;
+  transition: 0.2s;
+}
+
+.slideToggle_input:checked ~ .slideToggle_fill {
+  background: #009578;
+}
+.slideToggle_fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--toggleHeight);
+  width: var(--toggleHeight);
+  border-radius: var(--toggleRadius);
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
+}
+.slideToggle_input:checked ~ .slideToggle_fill::after {
+  transform: translateX(var(--toggleHeight));
 }
