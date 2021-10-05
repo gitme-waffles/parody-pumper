@@ -94,8 +94,7 @@ function searchSong(song, artist) {
 
   //     var lyrics = data.lyrics.split("\r\n")[1];
   //     //console.log(lyrics);
-  //     renderLyricsToScreen(lyrics);
-  //     convertText();
+  //     renderLyricsToScreen(lyrics);  
   //   }).catch(function(e) {
   //     console.log(e);
   //     // modalError(e.message);
@@ -116,8 +115,7 @@ function searchSong(song, artist) {
 
       var lyrics = data.lyrics.split("\r\n")[1];
       //console.log(lyrics);
-      renderLyricsToScreen(lyrics);
-      convertText();
+      renderLyricsToScreen(lyrics);     
     })
     .catch(function (e) {
       console.log(e);
