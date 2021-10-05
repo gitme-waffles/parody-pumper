@@ -94,7 +94,7 @@ function searchSong(song, artist) {
 
   //     var lyrics = data.lyrics.split("\r\n")[1];
   //     //console.log(lyrics);
-  //     renderLyricsToScreen(lyrics);  
+  //     renderLyricsToScreen(lyrics);
   //   }).catch(function(e) {
   //     console.log(e);
   //     // modalError(e.message);
@@ -115,7 +115,7 @@ function searchSong(song, artist) {
 
       var lyrics = data.lyrics.split("\r\n")[1];
       //console.log(lyrics);
-      renderLyricsToScreen(lyrics);     
+      renderLyricsToScreen(lyrics);
     })
     .catch(function (e) {
       console.log(e);
@@ -127,7 +127,7 @@ function searchSong(song, artist) {
 function renderLyricsToScreen(lyrics) {
   inputArtist.val("");
   inputSong.val("");
-
+  $lyricText.text("");
   //console.log(lyrics, "lyrics of song");
   // console.log(individualLyric, "individual Lyrics");
   var splitLyricsIntoLines = lyrics.split("\n");
