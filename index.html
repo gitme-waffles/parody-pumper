@@ -55,6 +55,7 @@
                     </div>
                 </div>
                 <div class="words-box card">
+                    <button id="gameBtn">Play a Game</button>
                     <h2>Rhymes</h2>
                     <div class="wordDiv">
                         <ul id="rhymingWords"></ul>
@@ -70,6 +71,55 @@
                 </div>
             </div>
         </section>
+        <div id="gameDiv">
+            <div id="chooseDifficulty" style="display: block">
+                <h1>Guess a Word</h1>
+                <h5>Choose a difficulty</h5>
+                <button id="easyBtn" title="very easy">Easy</button>
+                <button id="normalBtn" title="not difficult">Normal</button>
+                <button id="hardBtn" title="a challenge">Hard</button>
+            </div>
+
+            <div id="startDiv" style="display: none">
+                <h1>Guess a Word</h1>
+                <button id="startBtn">Start</button>
+                <p>Note: Some words may contain a hyphen(-) ex: X-ray</p>
+            </div>
+
+            <div id="mainGame" style="display: none">
+                <p id="question"></p>
+
+                <input type="text" id="guess" maxlength="1" placeholder="Enter Guess" />
+
+                <div>
+                    <button id="guessBtn">Enter Guess</button>
+                </div>
+            </div>
+
+            <div id="RRguess" style="display: block">
+                <p id="rightGuess"></p>
+                <p id="wrongGuess"></p>
+                <p id="guessesLeft"></p>
+            </div>
+
+            <div id="youLose" style="display: none">
+                <h1>You Lose</h1>
+
+                <div>
+                    <button class="restartBtn">Play again?</button>
+                </div>
+
+                <p id="correctWordWas"></p>
+            </div>
+
+            <div id="youWin" style="display: none">
+                <h2>You Win</h2>
+
+                <div>
+                    <button class="restartBtn">Play again?</button>
+                </div>
+            </div>
+        </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src=".\assets\js\script.js"></script>

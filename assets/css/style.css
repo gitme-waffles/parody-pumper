@@ -235,3 +235,32 @@ h2 {
 li {
   cursor: pointer;
 }
+#gameDiv{
+
+background-size: 100%;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translateX(-50%)translateY(-50%);
+text-align: center;
+}
+#startBtn,#restartBtn,#guessBtn
+
+{margin:20px;
+  width:200px;
+  height:40px;
+}
+#gameBtn{
+  float:right;
+  width:100px;
+  height: 50px;
+}
+#guess{
+  width:150px;
+  height:30px;
+  margin-top: 20px;
+  padding:5px;
+}
+#gameDiv.h1,#gameDiv.h5{
+  margin: 10px;
+}

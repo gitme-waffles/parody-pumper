@@ -9,9 +9,11 @@ var $lyricClick;
 var $copyToclip = $("#copyBtn");
 var $lyricClick, songtoSearch, artisttoSearch;
 var recentSearch = [];
-
+var $gameStart = $("#gameBtn");
 searchBtn.on("click", enterSong);
 $copyToclip.on("click", copyFunc);
+$gameStart.on("click", startPlay);
+var wordsPlay = [];
 function enterSong(event) {
     event.preventDefault();
     songtoSearch = inputSong.val().trim();
@@ -333,5 +335,411 @@ $("#recentSrchEl").on("change", function (event) {
     addHeading(songtoSearch, artisttoSearch);
     $("#recentSrchEl").get(0).selectedIndex = 0;
 });
+function startPlay() {
+    $("#gameDiv").show();
+    $(".result-container").hide();
+    var word = "";
+    var wordGuess = [];
+    var wrongGuess = [];
+    var guessNo = 0;
+    var winCount = 1;
+    var guess = "";
+    var dif = 0;
+    $("#easyBtn").on("click", chooseDif1);
+    $("#normalBtn").on("click", chooseDif2);
+    $("#hardBtn").on("click", chooseDif3);
+    $(" .restartBtn").on("click", restart);
+    $("#startBtn").on("click", start);
+
+    //if  opt easy
+    function chooseDif1() {
+        dif = 1;
+        document.getElementById("startDiv").style.display = "block";
+        document.getElementById("chooseDifficulty").style.display = "none";
+    }
+    //if opt normal
+    function chooseDif2() {
+        dif = 2;
+        document.getElementById("startDiv").style.display = "block";
+        document.getElementById("chooseDifficulty").style.display = "none";
+    }
+
+    //if opt difficult
+    function chooseDif3() {
+        dif = 3;
+        document.getElementById("startDiv").style.display = "block";
+        document.getElementById("chooseDifficulty").style.display = "none";
+    }
+
+    //function to selct a random word
+    function wordw() {
+        var randomWords = [
+            "humor",
+            "miniature",
+            "amusing",
+            "creepy",
+            "fact",
+            "risk",
+            "verse",
+            "land",
+            "lumpy",
+            "holiday",
+            "glorious",
+            "weigh",
+            "brake",
+            "pretty",
+            "grin",
+            "capricious",
+            "bite-sized",
+            "misty",
+            "ignore",
+            "certain",
+            "sloppy",
+            "dress",
+            "true",
+            "zonked",
+            "observation",
+            "action",
+            "various",
+            "want",
+            "direful",
+            "suck",
+            "dress",
+            "scarecrow",
+            "judge",
+            "madly",
+            "quizzical",
+            "consist",
+            "fierce",
+            "love",
+            "arrest",
+            "serve",
+            "fit",
+            "hug",
+            "tan",
+            "curve",
+            "eatable",
+            "tub",
+            "race",
+            "innocent",
+            "open",
+            "preach",
+            "steady",
+            "acoustics",
+            "lock",
+            "field",
+            "arrange",
+            "rifle",
+            "learned",
+            "toe",
+            "flow",
+            "competition",
+            "ill-fated",
+            "oatmeal",
+            "match",
+            "male",
+            "measure",
+            "loaf",
+            "smile",
+            "wrestle",
+            "dull",
+            "food",
+            "locket",
+            "bell",
+            "beg",
+            "strengthen",
+            "responsible",
+            "enchanting",
+            "loutish",
+            "switch",
+            "idea",
+            "nine",
+            "squeamish",
+            "pig",
+            "bat",
+            "dear",
+            "trains",
+            "owe",
+            "frogs",
+            "assorted",
+            "lonely",
+            "hurry",
+            "natural",
+            "sun",
+            "snow",
+            "obnoxious",
+            "broken",
+            "friend",
+            "bright",
+            "cake",
+            "sour",
+            "permit",
+            "economic",
+            "lovely",
+            "quick",
+            "van",
+            "tempt",
+            "apparel",
+            "decay",
+            "business",
+            "adjustment",
+            "blushing",
+            "makeshift",
+            "slippery",
+            "load",
+            "winter",
+            "exist",
+            "tongue",
+            "country",
+            "roll",
+            "fast",
+            "moor",
+            "possess",
+            "pat",
+            "pass",
+            "books",
+            "impartial",
+            "hospitable",
+            "dust",
+            "naughty",
+            "extra-large",
+            "tacky",
+            "produce",
+            "committee",
+            "fuzzy",
+            "judicious",
+            "nebulous",
+            "stick",
+            "ear",
+            "copy",
+            "friendly",
+            "press",
+            "distinct",
+            "vegetable",
+            "upset",
+            "venomous",
+            "statement",
+            "sulky",
+            "spell",
+            "x-ray",
+            "square",
+            "taste",
+            "great",
+            "thumb",
+            "adjoining",
+            "chilly",
+            "test",
+            "ancient",
+            "green",
+            "badge",
+            "work",
+            "repeat",
+            "free",
+            "elderly",
+            "doctor",
+            "difficult",
+            "grubby",
+            "approval",
+            "turn",
+            "vivacious",
+            "thundering",
+            "cherries",
+            "rest",
+            "plan",
+            "crime",
+            "sticks",
+            "wealthy",
+            "phone",
+            "suspend",
+            "gullible",
+            "fence",
+            "note",
+            "wall",
+            "interest",
+            "coil",
+            "jump",
+            "enchanted",
+            "funny",
+            "racial",
+            "greasy",
+            "polish",
+            "elbow",
+            "smart",
+            "bore",
+            "crowd",
+            "glistening",
+            "oval",
+            "eggs",
+            "nauseating",
+            "detailed",
+            "veil",
+            "coal",
+        ];
+        var raNum = Math.floor(Math.random() * 70);
+        console.log(raNum, "random Number"); //gives a random position in array
+        return randomWords[raNum]; //returns word to search
+    }
+
+    //function to display - according to wordlength
+    function wordStart() {
+        var wordLength = word.length;
+        var wordL_ = "";
+        var count = wordLength;
+
+        while (count > 0) {
+            wordGuess.push(" _ ");
+            count -= 1;
+        }
+    }
+
+    //
+    function winCountFunc() {
+        var num = 0;
+        var lettUsed = "";
+        var count = word.length;
+
+        while (count > 0) {
+            if (lettUsed.includes(word[count - 1])) {
+            } else {
+                num += 1;
+                lettUsed += word[count - 1];
+            }
+
+            count -= 1;
+        }
+
+        return num;
+    }
+
+    //function to start game;
+    function start() {
+        word = wordw();
+        // console.log(word, "word");
+        winCount = winCountFunc();
+
+        if (dif == 1) {
+            //if we choose easy option we can do wordlength+5 wrong guess
+            guessNo = word.length + 5;
+        } else if (dif == 2) {
+            // if we choose normal option we can do wrong guess same as word length
+            guessNo = word.length;
+        } else if (dif == 3) {
+            //if we choose difficult option wrong guess is half of word length.
+            if (word.length % 2 == 0) {
+                guessNo = word.length / 2;
+            } else {
+                guessNo = (word.length - 1) / 2;
+            }
+        }
+
+        console.log(word);
+        //    $("#guessBtn").on("click", enterGuess);
+        document.getElementById("mainGame").style.display = "block";
+        document.getElementById("startDiv").style.display = "none";
+        document.getElementById("question").innerHTML = "Enter your guess";
+
+        wordStart(); //calling functon wordStart
+
+        $("#guessBtn").on("click", enterGuess);
+
+        document.getElementById("RRguess").style.display = "block";
+        document.getElementById("rightGuess").innerHTML = "word progress: " + wordGuess;
+        document.getElementById("wrongGuess").innerHTML = "Wrong guesses: " + wrongGuess;
+        document.getElementById("guessesLeft").innerHTML = "Guesses remaining: " + guessNo;
+
+        // var x = document.getElementById("guess").maxLength;
+        // console.log(x, "guesslength");
+    }
+    //function to enter guesses
+    function enterGuess() {
+        var lett = document.getElementById("guess").value; //inputbox value
+        document.getElementById("guess").value = "";
+
+        if (lett.length === 1) {
+            var rightOnot = isRightOnot(lett); //calling function
+            if (rightOnot == true) {
+                NewCW(lett); //if true calls function
+            } else {
+                if (!wrongGuess.includes(lett)) {
+                    console.log("wrong guess!!");
+                    wrongGuess.push(lett); //pushes to wrong guess
+                }
+                guessNo -= 1; //lost one guessNo
+            }
+        } else if (lett.length < 1) {
+        } else {
+            guessNo -= 1; //if nothing in input box
+        }
+
+        if (guessNo <= 0) {
+            //guess chance over
+            gameLose();
+        }
+
+        if (winCount <= 0) {
+            gameWin();
+        }
+        document.getElementById("rightGuess").innerHTML = "word progress: " + wordGuess;
+        document.getElementById("wrongGuess").innerHTML = "Wrong guesses: " + wrongGuess;
+        document.getElementById("guessesLeft").innerHTML = "Guesses remaining: " + guessNo;
+    }
+    //function to check wheather guess we enter includes in word
+    function isRightOnot(a) {
+        var n = word.includes(a);
+        // console.log(n);
+        return n; //returns a true or false value
+    }
+
+    //function for enter the letter /guess in correct index/position
+    function NewCW(letter) {
+        var count = 0;
+        winCount -= 1;
+
+        while (count <= word.length - 1) {
+            if (letter === word[count]) {
+                if (wordGuess[count] === letter) {
+                } else {
+                }
+
+                wordGuess[count] = letter;
+                count += 1;
+            } else {
+                count += 1;
+            }
+        }
+    }
+    //function when lose game
+    function gameLose() {
+        document.getElementById("mainGame").style.display = "none";
+        document.getElementById("RRguess").style.display = "none";
+        document.getElementById("youLose").style.display = "block";
+        document.getElementById("correctWordWas").innerHTML = "The correct word was " + word;
+    }
+    //function when game win
+    function gameWin() {
+        document.getElementById("mainGame").style.display = "none";
+        document.getElementById("RRguess").style.display = "none";
+        document.getElementById("youWin").style.display = "block";
+    }
+    //function at restart
+    function restart() {
+        document.getElementById("mainGame").style.display = "none";
+        document.getElementById("RRguess").style.display = "none";
+        document.getElementById("youLose").style.display = "none";
+        document.getElementById("youWin").style.display = "none";
+        document.getElementById("chooseDifficulty").style.display = "block";
+
+        word = "";
+        wordGuess = [];
+        wrongGuess = [];
+        guessNo = 0;
+        winCount = 1;
+        guess = "";
+        dif = 0;
+    }
+}
 
 init(); //Initialise
+$(document).ready(function () {
+    $("#gameDiv").hide();
+});
