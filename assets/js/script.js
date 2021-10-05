@@ -115,7 +115,7 @@ function searchSong(song, artist) {
 
       var lyrics = data.lyrics.split("\r\n")[1];
       //console.log(lyrics);
-      renderLyricsToScreen(lyrics);
+      renderLyricsToScreen(lyrics);    
     })
     .catch(function (e) {
       console.log(e);
