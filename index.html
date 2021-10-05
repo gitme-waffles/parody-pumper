@@ -7,7 +7,7 @@
         <title>Parody-Pumper</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet" />
@@ -20,29 +20,45 @@
         <header>
             <div class="container">
                 <h1>Search Lyrics</h1>
-                <form action="" id="form" autocomplete="off">
-                    <input type="text" class="inputText" id="songName" placeholder="Enter Song...." />
-                    <span>By</span>
-                    <input type="text" class="inputText" id="artistName" placeholder="Enter Artist...." />
-                    <button id="search">Search</button>
-                    <!-- Adding in the "recent Search selector" -->
-                    <div id="rctSrchContainer">
-                        <label for="recentSrchEl">Recent Searches</label>
-                        <br />
-                        <select class="customSelect" name="recentSrchEl" id="recentSrchEl">
-                            <!-- <option> content goes here -->
-                        </select>
+
+                <form action="" id="form" class="form" autocomplete="off">
+                    <div class="songNameDiv">
+                        <input type="text" class="inputText" id="songName" placeholder="Enter Song...." />
                     </div>
+                    <div class="artistDiv">
+                        <span>By</span>
+                        <input type="text" class="inputText" id="artistName" placeholder="Enter Artist...." />
+                        <button id="search">Search</button>
+                    </div>
+                    <!-- Adding in the "recent Search selector" -->
                 </form>
+                <div id="rctSrchContainer">
+                    <label for="recentSrchEl">Recent Searches</label>
+                    <br />
+                    <select class="customSelect" name="recentSrchEl" id="recentSrchEl">
+                        <label class="slideToggle" for="toggleHlt"
+                            >Highlight Changes
+                            <input class="slideToggle_input" type="checkbox" id="toggleHlt" />
+                            <div class="slideToggle_fill"></div>
+                        </label>
+                        <label class="slideToggle" for="toggleCng"
+                            >Toggle all Changes
+                            <input class="slideToggle_input" type="checkbox" id="toggleCng" />
+                            <div class="slideToggle_fill"></div>
+                        </label>
+                    </select>
+                </div>
             </div>
         </header>
         <section class="result-container">
             <h1 class="results-heading"></h1>
             <div class="boxes-div">
-                <div class="lyric-text-div lyric-text card">
+                <div class="lyric-text-div card">
                     <h2>Lyrics of :<span id="song"></span><span id="artist"></span></h2>
                     <!-- Adding Copy to clip button -->
                     <button id="copyBtn">Copy lyrics</button>
+                    <p class="lyric-text"></p>
+
                     <div id="copyModal" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
@@ -55,7 +71,6 @@
                     </div>
                 </div>
                 <div class="words-box card">
-                    <button id="gameBtn">Play a Game</button>
                     <h2>Rhymes</h2>
                     <div class="wordDiv">
                         <ul id="rhymingWords"></ul>
@@ -71,57 +86,15 @@
                 </div>
             </div>
         </section>
-        <div id="gameDiv">
-            <div id="chooseDifficulty" style="display: block">
-                <h1>Guess a Word</h1>
-                <h5>Choose a difficulty</h5>
-                <button id="easyBtn" title="very easy">Easy</button>
-                <button id="normalBtn" title="not difficult">Normal</button>
-                <button id="hardBtn" title="a challenge">Hard</button>
-            </div>
 
-            <div id="startDiv" style="display: none">
-                <h1>Guess a Word</h1>
-                <button id="startBtn">Start</button>
-                <p>Note: Some words may contain a hyphen(-) ex: X-ray</p>
-            </div>
-
-            <div id="mainGame" style="display: none">
-                <p id="question"></p>
-
-                <input type="text" id="guess" maxlength="1" placeholder="Enter Guess" />
-
-                <div>
-                    <button id="guessBtn">Enter Guess</button>
-                </div>
-            </div>
-
-            <div id="RRguess" style="display: block">
-                <p id="rightGuess"></p>
-                <p id="wrongGuess"></p>
-                <p id="guessesLeft"></p>
-            </div>
-
-            <div id="youLose" style="display: none">
-                <h1>You Lose</h1>
-
-                <div>
-                    <button class="restartBtn">Play again?</button>
-                </div>
-
-                <p id="correctWordWas"></p>
-            </div>
-
-            <div id="youWin" style="display: none">
-                <h2>You Win</h2>
-
-                <div>
-                    <button class="restartBtn">Play again?</button>
-                </div>
-            </div>
+        <div id="modal" class="hide">
+            <div id="modalField"></div>
         </div>
+
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
         <script src=".\assets\js\script.js"></script>
     </body>
 </html>
