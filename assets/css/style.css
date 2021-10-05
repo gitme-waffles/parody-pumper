@@ -1,19 +1,30 @@
+:root {
+  --dark-green: #006d77;
+  --light: #edf6f9;
+  --orange: #e29578;
+  --hover-orange: #c55f39;
+}
+
 * {
-    padding: 0%;
-    margin: 0%;
-    box-sizing: border-box;
+  font-family: "Neucha";
 }
 
 body {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: #413F3D;
-  background-color: #F2F1EF;
+  color: var(--light);
+  background-color: var(--light);
 }
 
 header {
   padding: 30px;
   width: 100%;
-  background-color: #B1a6A4;
+  background-color: var(--dark-green);
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
 }
 
 .container h1 {
@@ -21,6 +32,18 @@ header {
   letter-spacing: 2px;
   text-align: left;
   display: block;
+  padding-left: 10px;
+  font-size: 4vw;
+}
+
+.songNameDiv {
+  flex-shrink: 2;
+  max-width: 195px;
+}
+
+.artistDiv {
+  flex-shrink: 1;
+  max-width: 350px;
 }
 
 .inputText {
@@ -28,7 +51,8 @@ header {
   border: none;
   padding: 20px;
   margin: 5px;
-  width: 25%;
+  background-color: #ffeae3;
+  height: 30px;
 }
 
 span {
@@ -39,18 +63,17 @@ span {
 button {
   width: 100px;
   height: 45px;
-  background: #45575c;
+  background: var(--orange);
   color: white;
   border-radius: 10px;
   font-size: 20px;
 }
 
 button:hover {
-  background-color: #627d85;
+  background-color: var(--hover-orange);
 }
 
 .boxes-div {
-  font-family: "Roboto Condensed", sans-serif;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -63,35 +86,22 @@ button:hover {
     cursor: pointer;
     padding-top: 3px;
     margin-top: 20px;
+    font-size: 2vw;
+}
+
+span {
+  font-size: 2vw;
 }
 
 .lyric-text span:hover {
   background-color: #45575c;
 }
 
-.words-box,
-.lyric-text-div {
-    
-    border: 2px white solid;
-    border-radius: 10px;
-    flex: 1;
-    padding: 20px;
-    line-height: 25px;
-    max-height: 80vh;
-    overflow-y: auto;
-    margin-top: 10px;
-}
-
 #song,
 #artist {
   font-size: 25px;
   font-weight: bold;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-style: italic;
-}
-
-h2 {
-    font-size: 25px;
 }
 
 .search-btn-div {
@@ -104,44 +114,54 @@ h2 {
   text-align: center;
 }
 
+.lyric-text-div {
+  flex: 0 1 60%
+}
+
+.words-box {
+  flex: 0 2 30%;
+}
+
 .card {
   padding: 10px;
-  flex: 0 1 40%;
-  color: #F2F1EF;
-  background-color: #697184;
-  border: 2px #697184 solid;
+  /* flex: 0 1 40%; */
+  color: #022c49;
+  background-color: #cbedf7;
+  border: 2px #022c49 solid;
   border-radius: 15px;
   padding: 20px;
   line-height: 25px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  letter-spacing: 2px;
+  font-size: 2.5vw;
 }
+
 .wordDiv {
     margin: 1rem 0;
     max-height: 33vh;
     overflow-y: auto;
 }
 .highLightColor {
-    background-color: #45575c;
+    background-color: #2a6f97;
     color: black;
 }
+
 .changedColor {
     background-color: lightseagreen;
     color: black;
 }
+
 #copyBtn {
     float: right;
     font-size: 15px;
     width: 100px;
     height: 50px;
-    /* width: fit-content; */
     padding: 5px;
     cursor: pointer;
-    font-family: "Roboto Condensed", sans-serif;
     /* margin: 3px; */
-    background-color: #45575c;
+    background-color: var(--orange);
 }
 #copyBtn:hover {
-    background-color: #627d85;
+    background-color: var(--hover-orange);
 }
 
 .modal {
@@ -157,7 +177,6 @@ h2 {
     height: 200px;
     border-radius: 20px;
     background-color: rgba(32, 6, 163, 0.4); 
-    
 }
 
 /* Modal Content/Box */
@@ -195,10 +214,18 @@ h2 {
 }
 
 #recentSrchEl {
-  border-radius: 15px;
-  width: 400px;
-  padding: 0.75rem 0.5rem;
+  border-radius: 10px;
+  border: none;
+  margin: 5px;
+  flex: 0 1 30%;
+  width: 30%;
+  height: 40px;
+  padding-left: 20px;
+  background-color: #ffeae3;
+  font-size: 1.5vmax;
+  color: #8e8e8e;
 }
+
 @media screen and (max-width: 700px) {
   .card {
     flex-direction: column;
@@ -206,6 +233,14 @@ h2 {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .form {
+      flex-direction: column;
+    }
+    .artistDiv {
+      min-width: 200px;
+    }
+}
 
 .wordDiv {
   margin: 1rem 0;
@@ -213,7 +248,7 @@ h2 {
   overflow-y: auto;
 }
 .highLightColor {
-  background-color: yellow;
+  background-color: #ffddd2;
   color: black;
 }
 .changedColor {
@@ -226,13 +261,16 @@ h2 {
   margin: 0.5rem 0;
 }
 
+li {
+  cursor: pointer;
+  font-size: 2vw;
+}
+
 #recentSrchEl {
   border-radius: 15px;
   width: 400px;
   padding: 0.75rem 0.5rem;
 }
-
-
 /* modal */
 #modal {
   background-color: rgb(40, 40, 40);
@@ -256,6 +294,3 @@ h2 {
   display: none;
 }
 
-li {
-  cursor: pointer;
-}

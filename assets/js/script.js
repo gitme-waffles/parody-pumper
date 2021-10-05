@@ -372,22 +372,22 @@ window.onclick = function (event) {
   }
 };
 function getRecent() {
-  recentSearch = null;
-  $("#recentSrchEl").text("");
-  $("#recentSrchEl").append($("<option>").text("Select Recent Searches"));
-  $("#recentSrchEl").prop("disabled", true);
 
-  recentSearch = JSON.parse(localStorage.getItem("searches"));
-  if (recentSearch === null) {
-    return;
-  }
-  for (var i = 0; i < recentSearch.length; i++) {
-    var $optionEl = $("<option>").text(
-      recentSearch[i].song + " - " + recentSearch[i].artist
-    );
-    $("#recentSrchEl").append($optionEl);
-  }
-  $("#recentSrchEl").prop("disabled", false);
+    recentSearch = null;
+    $("#recentSrchEl").text("");
+    $("#recentSrchEl").append($("<option>").text("Select Recent Searches"));
+    $("#recentSrchEl").prop("disabled", true);
+
+    recentSearch = JSON.parse(localStorage.getItem("searches"));
+    if (recentSearch === null) {
+        return;
+    }
+    for (var i = 0; i < recentSearch.length; i++) {
+        var $optionEl = $("<option>").text(recentSearch[i].song + " - " + recentSearch[i].artist);
+        $("#recentSrchEl").append($optionEl);
+    }
+    $("#recentSrchEl").prop("disabled", false);
+
 }
 
 function saveRecent() {
@@ -408,3 +408,13 @@ $("#recentSrchEl").on("change", function (event) {
 });
 
 init(); //Initialise
+
+
+
+// function TestsFunction() {
+//     var T = document.getElementById("TestsDiv"),
+//         displayValue = "";
+//     if (T.style.display == "")
+//         displayValue = "none";
+
+//     T.style.display = displayValue;
