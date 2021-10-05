@@ -315,6 +315,7 @@ function getRecent() {
         $("#recentSrchEl").append($optionEl);
     }
     $("#recentSrchEl").prop("disabled", false);
+
 }
 
 function saveRecent() {
@@ -335,3 +336,13 @@ $("#recentSrchEl").on("change", function (event) {
 });
 
 init(); //Initialise
+
+
+
+// function TestsFunction() {
+//     var T = document.getElementById("TestsDiv"),
+//         displayValue = "";
+//     if (T.style.display == "")
+//         displayValue = "none";
+
+//     T.style.display = displayValue;
