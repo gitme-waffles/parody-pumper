@@ -13,6 +13,7 @@ var $lyricClick, songtoSearch, artisttoSearch;
 var recentSearch = [];
 var changedLyric = [];
 var toggleHltTxt = false;
+var toggleCngTxt = false;
 
 searchBtn.on("click", enterSong);
 $copyToclip.on("click", copyFunc);
@@ -311,7 +312,7 @@ $wordsBoxEl.on("click", "li", function (event) {
       origional: $lyricClick.text(),
       new: $(event.target).text(),
     });
-    if ($toggleCng) {
+    if (toggleCngTxt) {
       $lyricClick.text(
         "(" + $lyricClick.text() + ") " + $(event.target).text()
       );
@@ -386,6 +387,7 @@ $toggleHlt.on("change", function (event) {
 });
 
 $toggleCng.on("change", function (event) {
+  toggleCngTxt = event.target.checked;
   for (var i = 0; i < changedLyric.length; i++) {
     if (event.target.checked) {
       changedLyric[i].target.text(

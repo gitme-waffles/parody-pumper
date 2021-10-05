@@ -193,12 +193,6 @@ h2 {
   width: 400px;
   padding: 0.75rem 0.5rem;
 }
-@media screen and (max-width: 700px) {
-  .card {
-    flex-direction: column;
-    min-width: 350px;
-  }
-}
 
 .wordDiv {
   margin: 1rem 0;
@@ -235,18 +229,21 @@ li {
   --toggleRadius: calc(var(--toggleHeight) / 2);
   display: inline-block;
   cursor: pointer;
+  margin: 0px 10px;
 }
 .slideToggle_input {
   display: none;
 }
 .slideToggle_fill {
   position: relative;
-  margin: 0 auto;
+  top: var(--toggleRadius);
   width: var(--toggleWidth);
   height: var(--toggleHeight);
   border-radius: var(--toggleRadius);
   background: #dddddd;
   transition: 0.2s;
+  display: inline-block;
+  padding-top: 15px;
 }
 
 .slideToggle_input:checked ~ .slideToggle_fill {
@@ -266,4 +263,14 @@ li {
 }
 .slideToggle_input:checked ~ .slideToggle_fill::after {
   transform: translateX(var(--toggleHeight));
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    flex-direction: column;
+    min-width: 350px;
+  }
+  #recentSrchEl {
+    width: 100%;
+  }
 }
