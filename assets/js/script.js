@@ -5,10 +5,15 @@ var inputSong = $("#songName");
 var inputArtist = $("#artistName");
 var $lyricText = $(".lyric-text");
 var $wordsBoxEl = $(".words-box");
-var $lyricClick;
+var $toggleHlt = $("#toggleHlt");
 var $copyToclip = $("#copyBtn");
+var $toggleCng = $("#toggleCng");
+var $lyricClick;
 var $lyricClick, songtoSearch, artisttoSearch;
 var recentSearch = [];
+var changedLyric = [];
+var toggleHltTxt = false;
+var toggleCngTxt = false;
 
 searchBtn.on("click", enterSong);
 $copyToclip.on("click", copyFunc);
@@ -338,10 +343,13 @@ function printAntonyms(wordArr, useMe) {
 $lyricText.on("click", "span", function (event) {
   if ($lyricClick) {
     $lyricClick.removeClass("highLightColor");
-    $lyricClick.addClass("changedColor");
+    if (toggleHltTxt) {
+      //$lyricClick.addClass("changedColor");
+      console.log("Me");
+    }
   }
   $lyricClick = $(event.target);
-  $lyricClick.addClass("highLightColor");
+  //$lyricClick.addClass("highLightColor");
   getWordRhymes($lyricClick.text());
   getWordSynonyms($lyricClick.text());
   getWordAntonyms($lyricClick.text());
@@ -350,9 +358,21 @@ $lyricText.on("click", "span", function (event) {
 // Event delegation
 $wordsBoxEl.on("click", "li", function (event) {
   if ($(event.target).data("use")) {
-    $lyricClick.text($(event.target).text());
-  } else {
-    return;
+    changedLyric.push({
+      target: $lyricClick,
+      origional: $lyricClick.text(),
+      new: $(event.target).text(),
+    });
+    if (toggleCngTxt) {
+      $lyricClick.text(
+        "(" + $lyricClick.text() + ") " + $(event.target).text()
+      );
+    } else {
+      $lyricClick.text($(event.target).text());
+    }
+    if (toggleHltTxt) {
+      $lyricClick.addClass("changedColor");
+    }
   }
 });
 
@@ -379,17 +399,14 @@ function getRecent() {
   $("#recentSrchEl").append($("<option>").text("Select Recent Searches"));
   $("#recentSrchEl").prop("disabled", true);
 
-  recentSearch = JSON.parse(localStorage.getItem("searches"));
-  if (recentSearch === null) {
-    return;
-  }
+  recentSearch = JSON.parse(localStorage.getItem("searches")) || [];
   for (var i = 0; i < recentSearch.length; i++) {
     var $optionEl = $("<option>").text(
       recentSearch[i].song + " - " + recentSearch[i].artist
     );
     $("#recentSrchEl").append($optionEl);
+    $("#recentSrchEl").prop("disabled", false);
   }
-  $("#recentSrchEl").prop("disabled", false);
 }
 
 function saveRecent() {
@@ -407,6 +424,30 @@ $("#recentSrchEl").on("change", function (event) {
   searchSong(songtoSearch, artisttoSearch);
   addHeading(songtoSearch, artisttoSearch);
   $("#recentSrchEl").get(0).selectedIndex = 0;
+});
+
+$toggleHlt.on("change", function (event) {
+  toggleHltTxt = event.target.checked;
+  for (var i = 0; i < changedLyric.length; i++) {
+    if (toggleHltTxt) {
+      changedLyric[i].target.addClass("changedColor");
+    } else {
+      changedLyric[i].target.removeClass("changedColor");
+    }
+  }
+});
+
+$toggleCng.on("change", function (event) {
+  toggleCngTxt = event.target.checked;
+  for (var i = 0; i < changedLyric.length; i++) {
+    if (event.target.checked) {
+      changedLyric[i].target.text(
+        "(" + changedLyric[i].origional + ") " + changedLyric[i].new
+      );
+    } else {
+      changedLyric[i].target.text(changedLyric[i].new);
+    }
+  }
 });
 
 init(); //Initialise
