@@ -311,8 +311,13 @@ $wordsBoxEl.on("click", "li", function (event) {
       origional: $lyricClick.text(),
       new: $(event.target).text(),
     });
-    $lyricClick.text($(event.target).text());
-
+    if ($toggleCng) {
+      $lyricClick.text(
+        "(" + $lyricClick.text() + ") " + $(event.target).text()
+      );
+    } else {
+      $lyricClick.text($(event.target).text());
+    }
     if (toggleHltTxt) {
       $lyricClick.addClass("changedColor");
     }
