@@ -28,43 +28,43 @@ function enterSong(event) {
     saveRecent();
     getRecent();
   } else {
-    renderModal()
+    renderModal();
   }
 }
 
 function modalError(eMessage) {
   // clears all previous info
-  $('#modalField').html('')
-  console.log(eMessage)
+  $("#modalField").html("");
+  console.log(eMessage);
   // create El
-  var errorEl =  $("<p>")
-  var songVal = inputSong.val()
-  var artistVal = inputArtist.val()
+  var errorEl = $("<p>");
+  var songVal = inputSong.val();
+  var artistVal = inputArtist.val();
 
   // set innerHTML with a value =>> error
   if (eMessage == 404) {
-    errorEl.html(`Error ${eMessage} <br /> Could not find '${songVal}' by '${artistVal}'`)
+    errorEl.html(
+      `Error ${eMessage} <br /> Could not find '${songVal}' by '${artistVal}'`
+    );
   } else {
-    errorEl.html(`Error ${eMessage}`)
+    errorEl.html(`Error ${eMessage}`);
   }
 
-  $('#modalField').append(errorEl)
+  $("#modalField").append(errorEl);
 
   // run modal remove $(".hide")
-  $('#modal').removeClass("hide")
-  $('#modal').modal({
-  fadeDuration: 100
-  });
+  $("#modal").removeClass("hide");
+  $("#modal").modal({ fadeDuration: 100 });
 }
 
 function renderModal() {
-  $('#modalField').html('')
-  var errorEl =  $("<p>")
-  errorEl.html(`Song and Artist is required`)
-  $('#modalField').append(errorEl)
-  $('#modal').removeClass("hide")
-  $('#modal').modal({
-  fadeDuration: 100
+  $("#modalField").html("");
+  var errorEl = $("<p>");
+  errorEl.html(`Song and Artist is required`);
+  $("#modalField").append(errorEl);
+  $("#modal").removeClass("hide");
+  $("#modal").modal({
+    fadeDuration: 100,
   });
 }
 
@@ -103,19 +103,21 @@ function searchSong(song, artist) {
     });
   });
 
-  mockedResponse.then(function (data) {
+  mockedResponse
+    .then(function (data) {
       console.log(data);
-      throw new Error();
-    console.log(data, "data");
+      //throw new Error(); removed for functionality
+      console.log(data, "data");
 
-    var lyrics = data.lyrics.split("\r\n")[1];
-    //console.log(lyrics);
-    renderLyricsToScreen(lyrics);
-    convertText();
-  }).catch(function(e) {
+      var lyrics = data.lyrics.split("\r\n")[1];
+      //console.log(lyrics);
+      renderLyricsToScreen(lyrics);
+      convertText();
+    })
+    .catch(function (e) {
       console.log(e);
       modalError(e.message);
-  });
+    });
 }
 
 //function to display song in container
@@ -372,22 +374,22 @@ window.onclick = function (event) {
   }
 };
 function getRecent() {
+  recentSearch = null;
+  $("#recentSrchEl").text("");
+  $("#recentSrchEl").append($("<option>").text("Select Recent Searches"));
+  $("#recentSrchEl").prop("disabled", true);
 
-    recentSearch = null;
-    $("#recentSrchEl").text("");
-    $("#recentSrchEl").append($("<option>").text("Select Recent Searches"));
-    $("#recentSrchEl").prop("disabled", true);
-
-    recentSearch = JSON.parse(localStorage.getItem("searches"));
-    if (recentSearch === null) {
-        return;
-    }
-    for (var i = 0; i < recentSearch.length; i++) {
-        var $optionEl = $("<option>").text(recentSearch[i].song + " - " + recentSearch[i].artist);
-        $("#recentSrchEl").append($optionEl);
-    }
-    $("#recentSrchEl").prop("disabled", false);
-
+  recentSearch = JSON.parse(localStorage.getItem("searches"));
+  if (recentSearch === null) {
+    return;
+  }
+  for (var i = 0; i < recentSearch.length; i++) {
+    var $optionEl = $("<option>").text(
+      recentSearch[i].song + " - " + recentSearch[i].artist
+    );
+    $("#recentSrchEl").append($optionEl);
+  }
+  $("#recentSrchEl").prop("disabled", false);
 }
 
 function saveRecent() {
@@ -408,8 +410,6 @@ $("#recentSrchEl").on("change", function (event) {
 });
 
 init(); //Initialise
-
-
 
 // function TestsFunction() {
 //     var T = document.getElementById("TestsDiv"),
