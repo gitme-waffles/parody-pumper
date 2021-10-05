@@ -131,6 +131,7 @@ button:hover {
   letter-spacing: 2px;
   font-size: 2.5vw;
   line-height: 2.8vw;
+  overflow-x: scroll;
 }
 
 .wordDiv {
