@@ -58,6 +58,7 @@ header {
 span {
   font-size: 25px;
   margin: 0 10px;
+  font-size: 2vw;
 }
 
 button {
@@ -88,22 +89,6 @@ button:hover {
     margin-top: 20px;
     font-size: 2vw;
 }
-
-span {
-  font-size: 2vw;
-}
-
-
-/*.words-box,
-.lyric-text-div {
-  border: 2px white solid;
-  border-radius: 10px;
-  flex: 1;
-  padding: 20px;
-  line-height: 25px;
-  max-height: 80vh;
-  overflow-y: auto;
-  margin-top: 10px;*/
 
 .lyric-text span:hover {
   background-color: #45575c;
@@ -137,8 +122,6 @@ span {
 
 .card {
   padding: 10px;
-
-  /* flex: 0 1 40%; */
   color: #022c49;
   background-color: #cbedf7;
   border: 2px #022c49 solid;
@@ -147,7 +130,7 @@ span {
   line-height: 25px;
   letter-spacing: 2px;
   font-size: 2.5vw;
-
+  line-height: 2.8vw;
 }
 
 .wordDiv {
@@ -167,16 +150,15 @@ span {
 }
 
 #copyBtn {
-
     float: right;
     font-size: 15px;
     width: 100px;
     height: 50px;
     padding: 5px;
     cursor: pointer;
-    /* margin: 3px; */
     background-color: var(--orange);
 }
+
 #copyBtn:hover {
     background-color: var(--hover-orange);
 }
@@ -194,7 +176,6 @@ span {
     height: 200px;
     border-radius: 20px;
     background-color: rgba(32, 6, 163, 0.4); 
-
 }
 
 /* Modal Content/Box */
@@ -232,7 +213,6 @@ span {
 }
 
 #recentSrchEl {
-  border-radius: 10px;
   border: none;
   margin: 5px;
   flex: 0 1 30%;
@@ -242,6 +222,8 @@ span {
   background-color: #ffeae3;
   font-size: 1.5vmax;
   color: #8e8e8e;
+  border-radius: 15px;
+  width: 400px;
 }
 
 
@@ -258,6 +240,9 @@ span {
     }
     .artistDiv {
       min-width: 200px;
+    }
+    #recentSrchEl {
+      width: 100%;
     }
 }
 
@@ -287,9 +272,7 @@ li {
 }
 
 #recentSrchEl {
-  border-radius: 15px;
-  width: 400px;
-  padding: 0.75rem 0.5rem;
+  
 }
 /* modal */
 #modal {
@@ -314,9 +297,9 @@ li {
   display: none;
 }
 
-
 li {
   cursor: pointer;
+  font-size: 2vw;
 }
 
 .slideToggle {
