@@ -208,8 +208,11 @@ button:hover {
   cursor: pointer;
 }
 #rctSrchContainer {
-  display: block;
+  display: flex;
   margin: 0.5rem 0;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
 }
 
 #recentSrchEl {
@@ -219,6 +222,8 @@ button:hover {
   width: 30%;
   height: 40px;
   padding-left: 20px;
+  margin-top: 20px;
+  float: left;
   background-color: #ffeae3;
   font-size: 1.5vmax;
   color: #8e8e8e;
@@ -226,11 +231,20 @@ button:hover {
   width: 400px;
 }
 
+.toggleDiv {
+  margin-top: 20px;
+  margin-left: 20px;
+}
 
 @media screen and (max-width: 700px) {
   .card {
     flex-direction: column;
-    min-width: 350px;
+    min-width: 100%;
+  }
+  .toggleDiv,
+  .toggleDiv {
+    flex-direction: column;
+    min-width: 100%;
   }
 }
 
@@ -259,11 +273,6 @@ button:hover {
 .changedColor {
   background-color: lightseagreen;
   color: black;
-}
-
-#rctSrchContainer {
-  display: block;
-  margin: 0.5rem 0;
 }
 
 li {
