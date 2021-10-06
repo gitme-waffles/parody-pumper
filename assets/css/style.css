@@ -106,6 +106,10 @@ button:hover {
   margin: 10px;
 }
 
+.greeting-margin {
+  margin-top: 20px;
+}
+
 .results-heading {
   margin: 20px;
   text-align: center;
