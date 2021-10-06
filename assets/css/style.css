@@ -83,16 +83,15 @@ button:hover {
 }
 
 .lyric-text {
-    white-space: pre;
-    cursor: pointer;
-    padding-top: 3px;
-    margin-top: 20px;
-    font-size: 2vw;
+  white-space: pre;
+  cursor: pointer;
+  padding-top: 3px;
+  margin-top: 20px;
+  font-size: 2vw;
 }
 
 .lyric-text span:hover {
   background-color: #45575c;
-
 }
 
 #song,
@@ -113,7 +112,7 @@ button:hover {
 }
 
 .lyric-text-div {
-  flex: 0 1 60%
+  flex: 0 1 60%;
 }
 
 .words-box {
@@ -131,7 +130,8 @@ button:hover {
   letter-spacing: 2px;
   font-size: 2.5vw;
   line-height: 2.8vw;
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .wordDiv {
@@ -140,43 +140,42 @@ button:hover {
   overflow-y: auto;
 }
 .highLightColor {
-    background-color: #2a6f97;
-    color: black;
+  background-color: #2a6f97;
+  color: black;
 }
 
 .changedColor {
-    background-color: lightseagreen;
-    color: black;
-
+  background-color: lightseagreen;
+  color: black;
 }
 
 #copyBtn {
-    float: right;
-    font-size: 15px;
-    width: 100px;
-    height: 50px;
-    padding: 5px;
-    cursor: pointer;
-    background-color: var(--orange);
+  float: right;
+  font-size: 15px;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: var(--orange);
 }
 
 #copyBtn:hover {
-    background-color: var(--hover-orange);
+  background-color: var(--hover-orange);
 }
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    position: absolute;
-    float: left;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px; 
-    height: 200px;
-    border-radius: 20px;
-    background-color: rgba(32, 6, 163, 0.4); 
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  border-radius: 20px;
+  background-color: rgba(32, 6, 163, 0.4);
 }
 
 /* Modal Content/Box */
@@ -193,7 +192,6 @@ button:hover {
   font-weight: bold;
   font-size: 15px;
   line-height: normal;
-  
 }
 
 /* The Close Button */
@@ -253,16 +251,15 @@ button:hover {
 
 @media screen and (max-width: 600px) {
   .form {
-      flex-direction: column;
-    }
-    .artistDiv {
-      min-width: 200px;
-    }
-    #recentSrchEl {
-      width: 100%;
-    }
+    flex-direction: column;
+  }
+  .artistDiv {
+    min-width: 200px;
+  }
+  #recentSrchEl {
+    width: 100%;
+  }
 }
-
 
 .wordDiv {
   margin: 1rem 0;
@@ -283,9 +280,6 @@ li {
   font-size: 2vw;
 }
 
-#recentSrchEl {
-  
-}
 /* modal */
 #modal {
   background-color: rgb(40, 40, 40);
@@ -355,5 +349,3 @@ li {
 .slideToggle_input:checked ~ .slideToggle_fill::after {
   transform: translateX(var(--toggleHeight));
 }
-
-
