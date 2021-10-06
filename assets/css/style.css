@@ -106,6 +106,15 @@ button:hover {
   margin: 10px;
 }
 
+.greeting-margin {
+  margin-top: 20px;
+}
+
+.greeting-margin h1 {
+  text-align: center;
+  padding: 0 0 20px 0;
+}
+
 .results-heading {
   margin: 20px;
   text-align: center;
@@ -132,6 +141,7 @@ button:hover {
   line-height: 2.8vw;
   overflow-x: auto;
   overflow-y: auto;
+  max-height: 65vh;
 }
 
 .wordDiv {
@@ -241,6 +251,7 @@ button:hover {
   .card {
     flex-direction: column;
     min-width: 100%;
+    max-height: 30vh;
   }
   .toggleDiv,
   .toggleDiv {
@@ -258,6 +269,11 @@ button:hover {
   }
   #recentSrchEl {
     width: 100%;
+  }
+  .result-container span {
+    margin: 0px 5px;
+    font-size: 4vw;
+    line-height: 2.5vw;
   }
 }
 

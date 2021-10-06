@@ -23,6 +23,10 @@ $searchBtn.on("click", function (event) {
   if (songtoSearch && artisttoSearch) {
     searchSong(songtoSearch, artisttoSearch);
     addHeading(songtoSearch, artisttoSearch);
+    //   hide greeting card
+    //   remove hide class
+    $("#greeting").addClass('hide');
+    $("#results").removeClass('hide');
 
     if (recentSearch !== null) {
       recentSearch.push({ artist: artisttoSearch, song: songtoSearch });
@@ -383,6 +387,9 @@ $("#recentSrchEl").on("change", function (event) {
   artisttoSearch = recentSearch[event.target.options.selectedIndex - 1].artist;
   searchSong(songtoSearch, artisttoSearch);
   addHeading(songtoSearch, artisttoSearch);
+  $("#greeting").addClass('hide');
+  $("#results").removeClass('hide');
+
   $("#recentSrchEl").get(0).selectedIndex = 0;
 });
 
