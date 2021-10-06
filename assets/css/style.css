@@ -20,13 +20,6 @@ header {
   background-color: var(--dark-green);
 }
 
-.form {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: stretch;
-}
-
 .container h1 {
   margin-bottom: 20px;
   letter-spacing: 2px;
@@ -34,6 +27,13 @@ header {
   display: block;
   padding-left: 10px;
   font-size: 4vw;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
 }
 
 .songNameDiv {
@@ -55,12 +55,6 @@ header {
   height: 30px;
 }
 
-span {
-  font-size: 25px;
-  margin: 0 10px;
-  font-size: 2vw;
-}
-
 button {
   width: 100px;
   height: 45px;
@@ -74,140 +68,6 @@ button:hover {
   background-color: var(--hover-orange);
 }
 
-.boxes-div {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: stretch;
-}
-
-.lyric-text {
-    white-space: pre;
-    cursor: pointer;
-    padding-top: 3px;
-    margin-top: 20px;
-    font-size: 2vw;
-}
-
-.lyric-text span:hover {
-  background-color: #45575c;
-
-}
-
-#song,
-#artist {
-  font-size: 25px;
-  font-weight: bold;
-  font-style: italic;
-}
-
-.search-btn-div {
-  padding-top: 10px;
-  margin: 10px;
-}
-
-.results-heading {
-  margin: 20px;
-  text-align: center;
-}
-
-.lyric-text-div {
-  flex: 0 1 60%
-}
-
-.words-box {
-  flex: 0 2 30%;
-}
-
-.card {
-  padding: 10px;
-  color: #022c49;
-  background-color: #cbedf7;
-  border: 2px #022c49 solid;
-  border-radius: 15px;
-  padding: 20px;
-  line-height: 25px;
-  letter-spacing: 2px;
-  font-size: 2.5vw;
-  line-height: 2.8vw;
-  overflow-x: scroll;
-}
-
-.wordDiv {
-  margin: 1rem 0;
-  max-height: 33vh;
-  overflow-y: auto;
-}
-.highLightColor {
-    background-color: #2a6f97;
-    color: black;
-}
-
-.changedColor {
-    background-color: lightseagreen;
-    color: black;
-
-}
-
-#copyBtn {
-    float: right;
-    font-size: 15px;
-    width: 100px;
-    height: 50px;
-    padding: 5px;
-    cursor: pointer;
-    background-color: var(--orange);
-}
-
-#copyBtn:hover {
-    background-color: var(--hover-orange);
-}
-
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    position: absolute;
-    float: left;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px; 
-    height: 200px;
-    border-radius: 20px;
-    background-color: rgba(32, 6, 163, 0.4); 
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  background-color: rgb(4, 4, 87);
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  height: 50%;
-  border-radius: 10px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
 #rctSrchContainer {
   display: flex;
   margin: 0.5rem 0;
@@ -237,54 +97,133 @@ button:hover {
   margin-left: 20px;
 }
 
-@media screen and (max-width: 700px) {
-  .card {
-    flex-direction: column;
-    min-width: 100%;
-  }
-  .toggleDiv,
-  .toggleDiv {
-    flex-direction: column;
-    min-width: 100%;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .form {
-      flex-direction: column;
-    }
-    .artistDiv {
-      min-width: 200px;
-    }
-    #recentSrchEl {
-      width: 100%;
-    }
-}
-
-
-.wordDiv {
-  margin: 1rem 0;
-  max-height: 33vh;
-  overflow-y: auto;
-}
-.highLightColor {
-  background-color: #ffddd2;
-  color: black;
-}
-.changedColor {
-  background-color: lightseagreen;
-  color: black;
-}
-
-li {
+.slideToggle {
+  --toggleWidth: 60px;
+  --toggleHeight: calc(var(--toggleWidth) / 2);
+  --toggleRadius: calc(var(--toggleHeight) / 2);
+  display: inline-block;
   cursor: pointer;
+  margin: 0px 10px;
+}
+
+.slideToggle_input {
+  display: none;
+}
+
+.slideToggle_fill {
+  position: relative;
+  top: var(--toggleRadius);
+  width: var(--toggleWidth);
+  height: var(--toggleHeight);
+  border-radius: var(--toggleRadius);
+  background: #dddddd;
+  transition: 0.2s;
+  display: inline-block;
+  padding-top: 15px;
+}
+
+.slideToggle_input:checked ~ .slideToggle_fill {
+  background: #009578;
+}
+
+.slideToggle_fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--toggleHeight);
+  width: var(--toggleHeight);
+  border-radius: var(--toggleRadius);
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
+}
+
+.slideToggle_input:checked ~ .slideToggle_fill::after {
+  transform: translateX(var(--toggleHeight));
+}
+
+.results-heading {
+  margin: 20px;
+  text-align: center;
+}
+
+.boxes-div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.lyric-text-div {
+  flex: 0 1 60%
+}
+
+#song,
+#artist {
+  font-size: 25px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+#copyBtn {
+  float: right;
+  font-size: 15px;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: var(--orange);
+}
+
+#copyBtn:hover {
+  background-color: var(--hover-orange);
+}
+
+.lyric-text {
+  white-space: pre;
+  cursor: pointer;
+  padding-top: 3px;
+  margin-top: 20px;
   font-size: 2vw;
 }
 
-#recentSrchEl {
-  
+.lyric-text span:hover {
+background-color: #45575c;
 }
+
 /* modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; 
+  height: 200px;
+  border-radius: 20px;
+  background-color: rgba(32, 6, 163, 0.4); 
+}
+
+/* Modal Content/Box */
+.modal-content {
+background-color: #fefefe;
+background-color: rgb(4, 4, 87);
+margin: 15% auto; /* 15% from the top and centered */
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+height: 50%;
+border-radius: 10px;
+color: white;
+font-weight: bold;
+font-size: 20px;
+}
+
 #modal {
   background-color: rgb(40, 40, 40);
   color: white;
@@ -303,8 +242,63 @@ li {
   text-align: center;
 }
 
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.words-box {
+  flex: 0 2 30%;
+}
+
+.card {
+  padding: 10px;
+  color: #022c49;
+  background-color: #cbedf7;
+  border: 2px #022c49 solid;
+  border-radius: 15px;
+  padding: 20px;
+  line-height: 25px;
+  letter-spacing: 2px;
+  font-size: 2.5vw;
+  line-height: 2.8vw;
+  overflow-x: scroll;
+}
+
+.highLightColor {
+  background-color: #2a6f97;
+  color: black;
+}
+
+.changedColor {
+  background-color: lightseagreen;
+  color: black;
+}
+
+.wordDiv {
+  margin: 1rem 0;
+  max-height: 33vh;
+  overflow-y: auto;
+}
+
 .hide {
   display: none;
+}
+
+span {
+  font-size: 25px;
+  margin: 0 10px;
+  font-size: 2vw;
 }
 
 li {
@@ -312,46 +306,25 @@ li {
   font-size: 2vw;
 }
 
-.slideToggle {
-  --toggleWidth: 60px;
-  --toggleHeight: calc(var(--toggleWidth) / 2);
-  --toggleRadius: calc(var(--toggleHeight) / 2);
-  display: inline-block;
-  cursor: pointer;
-  margin: 0px 10px;
-}
-.slideToggle_input {
-  display: none;
-}
-.slideToggle_fill {
-  position: relative;
-  top: var(--toggleRadius);
-  width: var(--toggleWidth);
-  height: var(--toggleHeight);
-  border-radius: var(--toggleRadius);
-  background: #dddddd;
-  transition: 0.2s;
-  display: inline-block;
-  padding-top: 15px;
+@media screen and (max-width: 700px) {
+  .card {
+    flex-direction: column;
+    min-width: 100%;
+  }
+  .toggleDiv {
+    flex-direction: column;
+    min-width: 100%;
+  }
 }
 
-.slideToggle_input:checked ~ .slideToggle_fill {
-  background: #009578;
+@media screen and (max-width: 600px) {
+  .form {
+      flex-direction: column;
+    }
+    .artistDiv {
+      min-width: 200px;
+    }
+    #recentSrchEl {
+      width: 100%;
+    }
 }
-.slideToggle_fill::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: var(--toggleHeight);
-  width: var(--toggleHeight);
-  border-radius: var(--toggleRadius);
-  background: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s;
-}
-.slideToggle_input:checked ~ .slideToggle_fill::after {
-  transform: translateX(var(--toggleHeight));
-}
-
-
