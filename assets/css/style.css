@@ -141,6 +141,7 @@ button:hover {
   line-height: 2.8vw;
   overflow-x: auto;
   overflow-y: auto;
+  max-height: 65vh;
 }
 
 .wordDiv {
@@ -250,6 +251,7 @@ button:hover {
   .card {
     flex-direction: column;
     min-width: 100%;
+    max-height: 30vh;
   }
   .toggleDiv,
   .toggleDiv {
@@ -267,6 +269,11 @@ button:hover {
   }
   #recentSrchEl {
     width: 100%;
+  }
+  .result-container span {
+    margin: 0px 5px;
+    font-size: 4vw;
+    line-height: 2.5vw;
   }
 }
 
