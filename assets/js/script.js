@@ -1,5 +1,5 @@
 var form = $(".form");
-var searchBtn = $("#search");
+var $searchBtn = $("#search");
 var resultArea = $(".result-container");
 var inputSong = $("#songName");
 var inputArtist = $("#artistName");
@@ -15,15 +15,18 @@ var changedLyric = [];
 var toggleHltTxt = false;
 var toggleCngTxt = false;
 
-searchBtn.on("click", enterSong);
-$copyToclip.on("click", copyFunc);
-function enterSong(event) {
+//Search Button Clicked
+$searchBtn.on("click", function (event) {
   event.preventDefault();
   songtoSearch = inputSong.val().trim();
   artisttoSearch = inputArtist.val().trim();
   if (songtoSearch && artisttoSearch) {
     searchSong(songtoSearch, artisttoSearch);
     addHeading(songtoSearch, artisttoSearch);
+    //   hide greeting card
+    //   remove hide class
+    $("#greeting").addClass('hide');
+    $("#results").removeClass('hide');
 
     if (recentSearch !== null) {
       recentSearch.push({ artist: artisttoSearch, song: songtoSearch });
@@ -35,8 +38,9 @@ function enterSong(event) {
   } else {
     renderModal();
   }
-}
+});
 
+//Modal error message
 function modalError(eMessage) {
   // clears all previous info
   $("#modalField").html("");
@@ -62,6 +66,7 @@ function modalError(eMessage) {
   $("#modal").modal({ fadeDuration: 100 });
 }
 
+//Rendar Modal to screen
 function renderModal() {
   $("#modalField").html("");
   var errorEl = $("<p>");
@@ -73,6 +78,7 @@ function renderModal() {
   });
 }
 
+//Get song lyrics from API
 function searchSong(song, artist) {
   var songUrl =
     "https://private-anon-e83b93ca5b-lyricsovh.apiary-proxy.com/v1/" +
@@ -103,9 +109,12 @@ function searchSong(song, artist) {
   var mockedResponse = new Promise(function (res) {
     res({
       lyrics:
-        "Paroles de la chanson Adventure Of A Lifetime par Coldplay\r\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nWe are legends\nEvery day\nThat's what she told him!\n\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\nWe are diamonds\n\nI feel my heart beating\nI feel my heart beneath my skin\nI feel my heart beating\n\n\nOhhh, you make me feel\nLike I'm alive again\nAlive again\nOhhh, you make me feel\nLike I'm alive again\n\nSaid I can't go on, not in this way\nI'm a dream, I die by light of day\nGonna hold up half the sky and say\nOhhh, we are omen\n\nI feel my heart beating\nI feel my heart beneath my skin\nOhhh, I can feel my heart beating\nCause you make me feel\nLike I'm alive again\nAlive again...\n\nOhhh, you make me feel\nLike I'm alive again\n\nTurn your magic on, to me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\n\nWe are diamonds taking shape!\nWe are diamonds taking shape!\n\nIf we've only got this life\nThen this adventure, more than I\nAnd if we've only got this life\nYou'll get me through alive\nAnd if we've only got this life\nThen this adventure, more than I\nWanna share with you\nWith you, with you\n\nI said, oh, say oh\n\nWoo hoo, woo hoo...",
+        "Africa by Toto\r\nI hear the drums echoing tonight\nBut she hears only whispers of some quiet conversation\nShe's coming in, 12:30 flight\nThe moonlit wings reflect the stars that guide me towards salvation\nI stopped an old man along the way\nHoping to find some old forgotten words or ancient melodies\nHe turned to me as if to say\nHurry boy, it's waiting there for you\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nGonna take some time to do the things we never had (ooh, ooh)\nThe wild dogs cry out in the night\nAs they grow restless, longing for some solitary company\nI know that I must do what's right\nAs sure as Kilimanjaro rises like Olympus above the Serengeti\nI seek to cure what's deep inside, frightened of this thing that I've become\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nGonna take some time to do the things we never had (ooh, ooh)\nHurry boy, she's waiting there for you\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nI bless the rains down in Africa\n(I bless the rain)\nI bless the rains down in Africa\nI bless the rains down in Africa\nI bless the rains down in Africa\n(Gonna take the time)\nGonna take some time to do the things we never had (ooh, ooh)",
     });
   });
+
+  //Lyrics for testing - Coldplay
+  //"Paroles de la chanson Adventure Of A Lifetime par Coldplay\r\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nWe are legends\nEvery day\nThat's what she told him!\n\nTurn your magic on\nTo me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\nWe are diamonds\n\nI feel my heart beating\nI feel my heart beneath my skin\nI feel my heart beating\n\n\nOhhh, you make me feel\nLike I'm alive again\nAlive again\nOhhh, you make me feel\nLike I'm alive again\n\nSaid I can't go on, not in this way\nI'm a dream, I die by light of day\nGonna hold up half the sky and say\nOhhh, we are omen\n\nI feel my heart beating\nI feel my heart beneath my skin\nOhhh, I can feel my heart beating\nCause you make me feel\nLike I'm alive again\nAlive again...\n\nOhhh, you make me feel\nLike I'm alive again\n\nTurn your magic on, to me she'd say\nEverything you want's a dream away\nUnder this pressure, under this weight\n\nWe are diamonds taking shape!\nWe are diamonds taking shape!\n\nIf we've only got this life\nThen this adventure, more than I\nAnd if we've only got this life\nYou'll get me through alive\nAnd if we've only got this life\nThen this adventure, more than I\nWanna share with you\nWith you, with you\n\nI said, oh, say oh\n\nWoo hoo, woo hoo...",
 
   mockedResponse
     .then(function (data) {
@@ -115,7 +124,7 @@ function searchSong(song, artist) {
 
       var lyrics = data.lyrics.split("\r\n")[1];
       //console.log(lyrics);
-      renderLyricsToScreen(lyrics);    
+      renderLyricsToScreen(lyrics);
     })
     .catch(function (e) {
       console.log(e);
@@ -127,9 +136,7 @@ function searchSong(song, artist) {
 function renderLyricsToScreen(lyrics) {
   inputArtist.val("");
   inputSong.val("");
-  $lyricText.text("");
-  //console.log(lyrics, "lyrics of song");
-  // console.log(individualLyric, "individual Lyrics");
+  $lyricText.text(""); //Clar the lyricText Children
   var splitLyricsIntoLines = lyrics.split("\n");
 
   for (var i = 0; i < splitLyricsIntoLines.length; i++) {
@@ -151,7 +158,6 @@ function renderLyricsToScreen(lyrics) {
       $lyricText.append(breakElem);
     }
   }
-  //Add song and Artist to recently searched - local storage.
 }
 
 //function to display song name and artist name as heading
@@ -162,31 +168,11 @@ function addHeading(song, artist) {
   $("#artist").append(artist.toUpperCase());
 }
 
-//function to copy lyrics to clipboard
-function copyFunc() {
-  // get the lyric text element
-  // iterate through the childrend
-  // if its a div, iterate through the words
-  // if its a break, skip it and add a new line (\n)
-  // sum up the strings into the original song lyric
-
-  // var $childDiv = $(".lyric-text").children();
-  // // var $grandchild = $(".lyric-text").find("span").text();
-  // console.log($childDiv, "child div");
-  // // console.log($grandchild, "grand child");
-  // var $childSpan = $(".lyric-text>div>span");
-  // console.log($childSpan);
-  // for (var i = 0; i < $childDiv.length; i++) {
-  //     console.log($childDiv[i]);
-  // }
-  // var $lyricText = $(".lyric-text");
-  // console.log($lyricText.children().length, "lyric text");
-
-  var $lyricText = $(".lyric-text");
-  var copyText = " ";
+//function to copy lyrics to clipboard on click
+$copyToclip.on("click", function () {
+  var copyText = "";
   for (var i = 0; i < $lyricText.children().length; i++) {
     var $lyricLine = $lyricText.children().eq(i).children();
-
     for (var j = 0; j < $lyricLine.length; j++) {
       copyText += $lyricLine.eq(j).text();
       if (j < $lyricLine.length - 1) {
@@ -195,24 +181,18 @@ function copyFunc() {
     }
     copyText += "\n";
   }
-  console.log(copyText);
-
-  var text = copyText;
-
   var $temp = $("<textarea>");
   $("body").append($temp);
-  $temp.text(text).select();
-
+  $temp.text(copyText).select();
   document.execCommand("copy");
   $temp.remove();
-  if (copyText !== " ") {
+  if (copyText !== "") {
     modal.style.display = "block";
   } else {
     console.log("Nothing to copy");
   }
-}
+});
 
-function messageDisplay() {}
 //fetch rhymes from wordAPI
 function getWordRhymes(searchWord) {
   var searchUrl =
@@ -225,18 +205,15 @@ function getWordRhymes(searchWord) {
     },
   })
     .then((response) => {
-      console.log(response);
       return response.json(response);
     })
     .then((data) => {
-      console.log(data);
       if (!data.rhymes.all) {
         throw new Error("No Rhymes Found");
       }
       printRhyming(data.rhymes.all, true);
     })
     .catch((err) => {
-      console.log(err);
       printRhyming(["No Rhymes Found"], false);
     });
 }
@@ -252,18 +229,15 @@ function getWordSynonyms(searchWord) {
     },
   })
     .then((response) => {
-      console.log(response);
       return response.json(response);
     })
     .then((data) => {
-      console.log(data);
       if (!data.synonyms || data.synonyms.length === 0) {
         throw new Error("No synonyms Found");
       }
       printSynonyms(data.synonyms, true);
     })
     .catch((err) => {
-      console.log("Synmon Error : ", err);
       printSynonyms(["No synonyms Found"], false);
     });
 }
@@ -279,11 +253,9 @@ function getWordAntonyms(searchWord) {
     },
   })
     .then((response) => {
-      console.log(response);
       return response.json(response);
     })
     .then((data) => {
-      console.log(data);
       if (!data.antonyms || data.antonyms.length === 0) {
         throw new Error("No antonyms Found");
       }
@@ -337,23 +309,18 @@ function printAntonyms(wordArr, useMe) {
   }
 }
 
-// event delegation - click on lyric word.
+// Click on lyric word.
 $lyricText.on("click", "span", function (event) {
   if ($lyricClick) {
     $lyricClick.removeClass("highLightColor");
-    if (toggleHltTxt) {
-      //$lyricClick.addClass("changedColor");
-      console.log("Me");
-    }
   }
   $lyricClick = $(event.target);
-  //$lyricClick.addClass("highLightColor");
   getWordRhymes($lyricClick.text());
   getWordSynonyms($lyricClick.text());
   getWordAntonyms($lyricClick.text());
 });
 
-// Event delegation
+// When a word is clicked push it to the changes array and update the lyric
 $wordsBoxEl.on("click", "li", function (event) {
   if ($(event.target).data("use")) {
     changedLyric.push({
@@ -391,6 +358,8 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+//Get recent searches from local storage
 function getRecent() {
   recentSearch = null;
   $("#recentSrchEl").text("");
@@ -407,12 +376,9 @@ function getRecent() {
   }
 }
 
+//Save to local storage
 function saveRecent() {
   localStorage.setItem("searches", JSON.stringify(recentSearch));
-}
-
-function init() {
-  getRecent();
 }
 
 // search here for a chnage in the recent search list
@@ -421,9 +387,13 @@ $("#recentSrchEl").on("change", function (event) {
   artisttoSearch = recentSearch[event.target.options.selectedIndex - 1].artist;
   searchSong(songtoSearch, artisttoSearch);
   addHeading(songtoSearch, artisttoSearch);
+  $("#greeting").addClass('hide');
+  $("#results").removeClass('hide');
+
   $("#recentSrchEl").get(0).selectedIndex = 0;
 });
 
+//Wait for a change in the Toggle Highlight
 $toggleHlt.on("change", function (event) {
   toggleHltTxt = event.target.checked;
   for (var i = 0; i < changedLyric.length; i++) {
@@ -435,6 +405,7 @@ $toggleHlt.on("change", function (event) {
   }
 });
 
+//Wait for a change in the Toggle All Changes
 $toggleCng.on("change", function (event) {
   toggleCngTxt = event.target.checked;
   for (var i = 0; i < changedLyric.length; i++) {
@@ -448,12 +419,4 @@ $toggleCng.on("change", function (event) {
   }
 });
 
-init(); //Initialise
-
-// function TestsFunction() {
-//     var T = document.getElementById("TestsDiv"),
-//         displayValue = "";
-//     if (T.style.display == "")
-//         displayValue = "none";
-
-//     T.style.display = displayValue;
+getRecent(); //Initialise
