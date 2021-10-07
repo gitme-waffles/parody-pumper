@@ -5,9 +5,10 @@ Choose a song, change the lyrics that rhyme with another word with word API
 ## *User Story*
 
 As a user, I want to get the lyrics to my favourite song, so that I can change the words I don’t like, and copy to clipboard to save somewhere else
-- Will be using words API, and lyrics.ovh API
+- Will be using lyrics.ovh API for a lyric database
+- Will be using words API for rhymes, synonyms and antonyms
+- Make it into a game by toggling the highlight of what words were changed and what the origional word was with the changed word
 - as an option, we may add spotify API to listen to a sample of the song
-<!-- Make it into a game by toggling highlighted words and toggle what the origional word was with the changed word -->
 
 ## *Acceptance Criteria*
 
@@ -36,5 +37,4 @@ THEN I am presented with an appropriate response.
 WHEN I come back to the application after exiting,
 THEN I have local storage that saves my previous searches.
 ```
-- Changes MUST be done on a branch separate to the main, and pull requests must be used to merge changes.
-- Must be deployed to GitHub pages
+![screenshot](./assets/images/Image1.png)
