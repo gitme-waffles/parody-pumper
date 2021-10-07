@@ -2,6 +2,7 @@
 Lyric app
 Choose a song, change the lyrics that rhyme with another word with word API 
 
+
 ## *User Story*
 
 As a user, I want to get the lyrics to my favourite song, so that I can change the words I don’t like, and copy to clipboard to save somewhere else
@@ -41,3 +42,4 @@ THEN I have local storage that saves my previous searches.
 [Link to deployed site](https://gitme-waffles.github.io/parody-pumper/)
 
 ![screenshot](./assets/images/Image1.png)
+
