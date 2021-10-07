@@ -39,7 +39,7 @@ THEN I have local storage that saves my previous searches.
 * css  
 * javascript  
 * [jQuery V3.5](https://api.jquery.com/) to manipulate and traverse the DOM.  
-* [jQuery UI] (https://jqueryui.com/)  
+* [jQuery UI](https://jqueryui.com/)  
 * 
   
 # Links
