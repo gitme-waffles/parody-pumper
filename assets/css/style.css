@@ -10,11 +10,14 @@
 }
 html,
 body {
+  color: var(--light);
+  background-color: var(--light);
+}
+
+body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  color: var(--light);
-  background-color: var(--light);
 }
 
 header {
@@ -280,12 +283,11 @@ button:hover {
 
 .card {
   max-height: 100%;
-  padding: 10px;
   color: #022c49;
   background-color: #cbedf7;
   border: 2px #022c49 solid;
+  padding: 20px 2px 10px 2px;
   border-radius: 15px;
-  padding: 20px;
   letter-spacing: 2px;
   font-size: 2.5vw;
   line-height: 2.8vw;
@@ -307,9 +309,9 @@ button:hover {
   margin: 1rem 0;
   max-height: 33vh;
   overflow-y: auto;
-  /* border: 1px solid lightgray; */
   border-radius: 10px;
   box-shadow: 0 0 5px 1px #d3d3d39f;
+  font-size: 2vw;
 }
 
 .hide {
@@ -317,7 +319,6 @@ button:hover {
 }
 
 span {
-  font-size: 25px;
   margin: 0 10px;
   font-size: 2vw;
 }
@@ -335,12 +336,12 @@ li {
     flex-direction: column;
     min-width: 100%;
   }
-  span {
-    margin: 0 5px;
-    font-size: 3.5vw;
-    line-height: 1.5;
-  }
-  .card {
+  span,
+  .card,
+  .wordDiv,
+  li,
+  #song,
+  #artist {
     font-size: 3.5vw;
     line-height: 1.5;
   }
@@ -356,13 +357,13 @@ li {
   #recentSrchEl {
     width: 100%;
   }
-  span {
-    margin: 0 5px;
-    font-size: 4vw;
-    line-height: 1.5;
-  }
-  .card {
-    font-size: 4vw;
+  span,
+  .card,
+  .wordDiv,
+  li,
+  #song,
+  #artist {
+    font-size: 3.5vw;
     line-height: 1.5;
   }
 }
