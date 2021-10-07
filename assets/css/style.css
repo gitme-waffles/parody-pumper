@@ -134,7 +134,7 @@ button:hover {
   background: #dddddd;
   transition: 0.2s;
   display: inline-block;
-  padding-top: 15px;
+  /*padding-top: 15px;*/
 }
 
 .slideToggle_input:checked ~ .slideToggle_fill {
