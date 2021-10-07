@@ -224,7 +224,7 @@ button:hover {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
-  height: 200px;
+  /*height: 200px;*/
   border-radius: 20px;
   background-color: rgba(32, 6, 163, 0.4);
 }
