@@ -25,8 +25,8 @@ $searchBtn.on("click", function (event) {
     addHeading(songtoSearch, artisttoSearch);
     //   hide greeting card
     //   remove hide class
-    $("#greeting").addClass('hide');
-    $("#results").removeClass('hide');
+    $("#greeting").addClass("hide");
+    $("#results").removeClass("hide");
 
     if (recentSearch !== null) {
       recentSearch.push({ artist: artisttoSearch, song: songtoSearch });
@@ -109,7 +109,7 @@ function searchSong(song, artist) {
   var mockedResponse = new Promise(function (res) {
     res({
       lyrics:
-        "Africa by Toto\r\nI hear the drums echoing tonight\nBut she hears only whispers of some quiet conversation\nShe's coming in, 12:30 flight\nThe moonlit wings reflect the stars that guide me towards salvation\nI stopped an old man along the way\nHoping to find some old forgotten words or ancient melodies\nHe turned to me as if to say\nHurry boy, it's waiting there for you\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nGonna take some time to do the things we never had (ooh, ooh)\nThe wild dogs cry out in the night\nAs they grow restless, longing for some solitary company\nI know that I must do what's right\nAs sure as Kilimanjaro rises like Olympus above the Serengeti\nI seek to cure what's deep inside, frightened of this thing that I've become\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nGonna take some time to do the things we never had (ooh, ooh)\nHurry boy, she's waiting there for you\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nI bless the rains down in Africa\n(I bless the rain)\nI bless the rains down in Africa\nI bless the rains down in Africa\nI bless the rains down in Africa\n(Gonna take the time)\nGonna take some time to do the things we never had (ooh, ooh)",
+        "Africa by Toto\r\nI hear the drums echoing tonight\nBut she hears only whispers of some quiet conversation\nShe's coming in, 12:30 flight\nThe moonlit wings reflect the stars that guide me towards salvation\nI stopped an old man along the way\nHoping to find some old forgotten words or ancient melodies\nHe turned to me as if to say\nHurry boy, it's waiting there for you\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nGonna take some time to do the things we never had (ooh, ooh)\nThe wild dogs cry out in the night\nAs they grow restless, longing for some solitary company\nI know that I must do what's right\nAs sure as Kilimanjaro rises like Olympus above the Serengeti\nI seek to cure what's deep inside, frightened of this thing that I've become\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nGonna take some time to do the things we never had (ooh, ooh)\nHurry boy, she's waiting there for you\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nI bless the rains down in Africa\n(I bless the rain)\nI bless the rains down in Africa\nI bless the rains down in Africa\nI bless the rains down in Africa\n(Gonna take the time)\nGonna take some time to do the things we never had (ooh, ooh)\nI hear the drums echoing tonight\nBut she hears only whispers of some quiet conversation\nShe's coming in, 12:30 flight\nThe moonlit wings reflect the stars that guide me towards salvation\nI stopped an old man along the way\nHoping to find some old forgotten words or ancient melodies\nHe turned to me as if to say\nHurry boy, it's waiting there for you\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nGonna take some time to do the things we never had (ooh, ooh)\nThe wild dogs cry out in the night\nAs they grow restless, longing for some solitary company\nI know that I must do what's right\nAs sure as Kilimanjaro rises like Olympus above the Serengeti\nI seek to cure what's deep inside, frightened of this thing that I've become\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nGonna take some time to do the things we never had (ooh, ooh)\nHurry boy, she's waiting there for you\nIt's gonna take a lot to drag me away from you\nThere's nothing that a hundred men or more could ever do\nI bless the rains down in Africa\nI bless the rains down in Africa\n(I bless the rain)\nI bless the rains down in Africa\nI bless the rains down in Africa\nI bless the rains down in Africa\n(Gonna take the time)\nGonna take some time to do the things we never had (ooh, ooh)",
     });
   });
 
@@ -387,8 +387,8 @@ $("#recentSrchEl").on("change", function (event) {
   artisttoSearch = recentSearch[event.target.options.selectedIndex - 1].artist;
   searchSong(songtoSearch, artisttoSearch);
   addHeading(songtoSearch, artisttoSearch);
-  $("#greeting").addClass('hide');
-  $("#results").removeClass('hide');
+  $("#greeting").addClass("hide");
+  $("#results").removeClass("hide");
 
   $("#recentSrchEl").get(0).selectedIndex = 0;
 });
