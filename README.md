@@ -1,4 +1,4 @@
-# parody-pumper
+# Parody-pumper
 Lyric app
 Choose a song, change the lyrics that rhyme with another word with word API 
 
@@ -8,7 +8,7 @@ As a user, I want to get the lyrics to my favourite song, so that I can change t
 - Will be using lyrics.ovh API for a lyric database
 - Will be using words API for rhymes, synonyms and antonyms
 - Make it into a game by toggling the highlight of what words were changed and what the origional word was with the changed word
-- as an option, we may add spotify API to listen to a sample of the song
+- As an option, we may add spotify API to listen to a sample of the song
 
 ## *Acceptance Criteria*
 
@@ -37,4 +37,7 @@ THEN I am presented with an appropriate response.
 WHEN I come back to the application after exiting,
 THEN I have local storage that saves my previous searches.
 ```
+
+[Link to deployed site](https://gitme-waffles.github.io/parody-pumper/)
+
 ![screenshot](./assets/images/Image1.png)
