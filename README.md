@@ -28,20 +28,4 @@ WHEN I come back to the application after exiting,
 THEN I have local storage that saves my previous searches.  
   
 - Changes MUST be done on a branch separate to the main, and pull requests must be used to merge changes.  
-- Must be deployed to GitHub pages  
-  
-# API's Used  
-* 1111  
-* 2222  
-
-# Built With  
-* html  
-* css  
-* javascript  
-* [jQuery V3.5](https://api.jquery.com/) to manipulate and traverse the DOM.  
-* [jQuery UI](https://jqueryui.com/)  
-* 
-  
-# Links
-Project Link: https://github.com/
-Published Link: https://
+- Must be deployed to GitHub pages
