@@ -52,12 +52,11 @@ main {
 
 .songNameDiv {
   flex-shrink: 2;
-  max-width: 195px;
+  max-width: 295px;
 }
 
 .artistDiv {
   flex-shrink: 1;
-  max-width: 350px;
 }
 
 .inputText {
