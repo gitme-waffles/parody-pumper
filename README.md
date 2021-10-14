@@ -39,7 +39,7 @@ WHEN I come back to the application after exiting,
 THEN I have local storage that saves my previous searches.
 ```
 
-[Link to deployed site](https://gitme-waffles.github.io/parody-pumper/)
+[Link to deployed site](https://dossanania.github.io/parody-pumper/)
 
 ![screenshot](./assets/images/Image1.png)
 
